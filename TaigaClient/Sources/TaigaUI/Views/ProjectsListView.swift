@@ -18,9 +18,6 @@ public struct ProjectsListView: View {
     public var body: some View {
         content
         .navigationTitle("Projects")
-        .toolbar {
-            Button("Logout") { onLogout() }
-        }
         .sheet(isPresented: $showsSettings) {
             AppSettingsView()
         }
@@ -47,9 +44,9 @@ public struct ProjectsListView: View {
         ):
             let relatedSet = Set(relatedProjectIds)
             let myProjects = projects.filter { relatedSet.contains($0.id) }
-            List {
-                Section {
-                    HStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    HStack(spacing: 12) {
                         Text("My Work")
                             .font(.subheadline.weight(.semibold))
                             .padding(.horizontal, 14)
@@ -66,81 +63,118 @@ public struct ProjectsListView: View {
                                 .padding(10)
                                 .background(.ultraThinMaterial, in: Circle())
                         }
-                    }
-                }
 
-                let visibleMyWork = myWork
-                Section(username.map { "My Work (\($0))" } ?? "My Work") {
-                    if visibleMyWork.isEmpty {
-                        VStack(alignment: .leading, spacing: 4) {
+                        Button("Logout") { onLogout() }
+                            .font(.subheadline.weight(.semibold))
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 8)
+                            .background(.ultraThinMaterial, in: Capsule())
+                    }
+                    .padding(12)
+                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                            .stroke(Color.white.opacity(0.08), lineWidth: 1)
+                    )
+
+                    Text(username.map { "My Work (\($0))" } ?? "My Work")
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(.secondary)
+
+                    if myWork.isEmpty {
+                        VStack(alignment: .leading, spacing: 6) {
                             Text("No assigned items found")
                                 .font(.headline)
                             Text("Your assigned stories/tasks/issues will show here.")
-                                .font(.caption)
+                                .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         }
+                        .padding(18)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
                     } else {
-                        ForEach(visibleMyWork) { item in
-                            NavigationLink {
-                                ProjectDetailView(
-                                    viewModel: ItemsViewModel(
-                                        itemsService: itemsService,
-                                        authService: authService,
-                                        projectId: item.projectId
+                        VStack(spacing: 12) {
+                            ForEach(myWork) { item in
+                                NavigationLink {
+                                    ProjectDetailView(
+                                        viewModel: ItemsViewModel(
+                                            itemsService: itemsService,
+                                            authService: authService,
+                                            projectId: item.projectId
+                                        )
                                     )
-                                )
-                            } label: {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(item.subject)
-                                        .font(.headline)
-                                        .lineLimit(2)
-                                    HStack(spacing: 8) {
-                                        Text(item.projectName)
-                                            .font(.caption)
-                                            .foregroundStyle(.secondary)
-                                        Text(item.kind.rawValue)
-                                            .font(.caption2.weight(.semibold))
-                                            .padding(.horizontal, 8)
-                                            .padding(.vertical, 3)
-                                            .background(.thinMaterial, in: Capsule())
+                                } label: {
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        Text(item.subject)
+                                            .font(.headline)
+                                            .lineLimit(2)
+                                        HStack(spacing: 8) {
+                                            Text(item.projectName)
+                                                .font(.caption)
+                                                .foregroundStyle(.secondary)
+                                            Text(item.kind.rawValue)
+                                                .font(.caption2.weight(.semibold))
+                                                .padding(.horizontal, 8)
+                                                .padding(.vertical, 3)
+                                                .background(.thinMaterial, in: Capsule())
+                                        }
                                     }
+                                    .padding(16)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
                                 }
+                                .buttonStyle(.plain)
                             }
                         }
                     }
-                }
 
-                Section("Your Projects") {
+                    Text("Your Projects")
+                        .font(.title3.weight(.semibold))
+                        .foregroundStyle(.secondary)
+
                     if myProjects.isEmpty {
                         Text("No related projects yet")
                             .foregroundStyle(.secondary)
+                            .padding(18)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
                     } else {
-                        ForEach(myProjects) { project in
-                            NavigationLink {
-                                ProjectDetailView(
-                                    viewModel: ItemsViewModel(
-                                        itemsService: itemsService,
-                                        authService: authService,
-                                        projectId: project.id
+                        VStack(spacing: 12) {
+                            ForEach(myProjects) { project in
+                                NavigationLink {
+                                    ProjectDetailView(
+                                        viewModel: ItemsViewModel(
+                                            itemsService: itemsService,
+                                            authService: authService,
+                                            projectId: project.id
+                                        )
                                     )
-                                )
-                            } label: {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(project.name)
-                                        .font(.headline)
-                                    if let description = project.description, !description.isEmpty {
-                                        Text(description)
+                                } label: {
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        Text(project.name)
+                                            .font(.headline)
+                                        if let description = project.description, !description.isEmpty {
+                                            Text(description)
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary)
+                                                .lineLimit(2)
+                                        }
+                                        Text(project.slug)
+                                            .font(.caption)
                                             .foregroundStyle(.secondary)
-                                            .lineLimit(2)
                                     }
-                                    Text(project.slug)
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
+                                    .padding(16)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
                                 }
+                                .buttonStyle(.plain)
                             }
                         }
                     }
                 }
+                .padding(.horizontal, 20)
+                .padding(.top, 12)
+                .padding(.bottom, 100)
             }
             .refreshable { await viewModel.load() }
             .safeAreaInset(edge: .bottom) {

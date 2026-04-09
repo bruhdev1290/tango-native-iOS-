@@ -1,7 +1,7 @@
 import SwiftUI
 
 public struct AppSettingsView: View {
-    private enum SupportTopic: String, CaseIterable, Identifiable {
+    fileprivate enum SupportTopic: String, CaseIterable, Identifiable {
         case errors = "Errors"
         case featureRequest = "Feature Request"
         case securityPrivacyInquiry = "Security or Privacy Inquiry"
@@ -9,7 +9,7 @@ public struct AppSettingsView: View {
         var id: String { rawValue }
     }
 
-    private enum AppearanceMode: String, CaseIterable, Identifiable {
+    fileprivate enum AppearanceMode: String, CaseIterable, Identifiable {
         case system
         case light
         case dark
@@ -28,7 +28,7 @@ public struct AppSettingsView: View {
         }
     }
 
-    private enum AccentColorOption: String, CaseIterable, Identifiable {
+    fileprivate enum AccentColorOption: String, CaseIterable, Identifiable {
         case system
         case blue
         case green
@@ -54,7 +54,6 @@ public struct AppSettingsView: View {
     }
 
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.openURL) private var openURL
     @AppStorage("app-appearance-mode") private var appearanceModeRaw: String = AppearanceMode.system.rawValue
     @AppStorage("app-accent-color") private var accentColorRaw: String = AccentColorOption.system.rawValue
     @AppStorage("taiga-base-url") private var taigaBaseURL: String = "https://api.taiga.io/api/v1"
@@ -69,50 +68,35 @@ public struct AppSettingsView: View {
     public var body: some View {
         NavigationStack {
             Form {
-                Section("Appearance") {
-                    Picker("Color scheme", selection: $appearanceModeRaw) {
-                        ForEach(AppearanceMode.allCases) { mode in
-                            Text(mode.title).tag(mode.rawValue)
-                        }
-                    }
-                    .pickerStyle(.inline)
-                }
-                .listRowBackground(.ultraThinMaterial)
-
-                Section("Accent Color") {
-                    Picker("Tint", selection: $accentColorRaw) {
-                        ForEach(AccentColorOption.allCases) { option in
-                            Text(option.title).tag(option.rawValue)
-                        }
-                    }
-                    .pickerStyle(.inline)
-                }
-                .listRowBackground(.ultraThinMaterial)
-
-                Section("Support") {
-                    Picker("Topic", selection: $supportTopic) {
-                        ForEach(SupportTopic.allCases) { topic in
-                            Text(topic.rawValue).tag(topic)
-                        }
-                    }
-                    .pickerStyle(.menu)
-
-                    TextField("What happened?", text: $supportDetails, axis: .vertical)
-                        .lineLimit(3...6)
-
-                    Toggle("Include app logs", isOn: $includesLogs)
-
-                    Button("Compose Support Email") {
-                        composeSupportEmail()
+                Section("Preferences") {
+                    NavigationLink {
+                        AppearanceSettingsView(appearanceModeRaw: $appearanceModeRaw)
+                    } label: {
+                        Label("Appearance", systemImage: "circle.lefthalf.filled")
                     }
 
-                    if let supportErrorMessage {
-                        Text(supportErrorMessage)
-                            .font(.footnote)
-                            .foregroundStyle(.red)
+                    NavigationLink {
+                        AccentColorSettingsView(accentColorRaw: $accentColorRaw)
+                    } label: {
+                        Label("Accent Color", systemImage: "paintpalette")
                     }
                 }
-                .listRowBackground(.ultraThinMaterial)
+
+                Section("Help") {
+                    NavigationLink {
+                        SupportSettingsView(
+                            supportTopic: $supportTopic,
+                            supportDetails: $supportDetails,
+                            includesLogs: $includesLogs,
+                            supportErrorMessage: $supportErrorMessage,
+                            appearanceModeRaw: appearanceModeRaw,
+                            accentColorRaw: accentColorRaw,
+                            taigaBaseURL: taigaBaseURL
+                        )
+                    } label: {
+                        Label("Support", systemImage: "envelope")
+                    }
+                }
             }
             .scrollContentBackground(.hidden)
             .background(
@@ -131,6 +115,99 @@ public struct AppSettingsView: View {
         }
     }
 
+    fileprivate static func supportLogLines(appearanceModeRaw: String, accentColorRaw: String, taigaBaseURL: String) -> [String] {
+        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown"
+        let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "unknown"
+        let osVersion = ProcessInfo.processInfo.operatingSystemVersionString
+
+        return [
+            "App Logs:",
+            "- App version: \(appVersion) (\(buildNumber))",
+            "- OS: \(osVersion)",
+            "- Appearance: \(appearanceModeRaw)",
+            "- Accent color: \(accentColorRaw)",
+            "- Taiga API URL: \(taigaBaseURL)",
+            "- Timestamp: \(Date().formatted(date: .abbreviated, time: .standard))"
+        ]
+    }
+}
+
+private struct AppearanceSettingsView: View {
+    @Binding var appearanceModeRaw: String
+
+    var body: some View {
+        Form {
+            Section("Color Scheme") {
+                Picker("Color scheme", selection: $appearanceModeRaw) {
+                    ForEach(AppSettingsView.AppearanceMode.allCases) { mode in
+                        Text(mode.title).tag(mode.rawValue)
+                    }
+                }
+                .pickerStyle(.inline)
+            }
+        }
+        .navigationTitle("Appearance")
+    }
+}
+
+private struct AccentColorSettingsView: View {
+    @Binding var accentColorRaw: String
+
+    var body: some View {
+        Form {
+            Section("Tint") {
+                Picker("Accent color", selection: $accentColorRaw) {
+                    ForEach(AppSettingsView.AccentColorOption.allCases) { option in
+                        Text(option.title).tag(option.rawValue)
+                    }
+                }
+                .pickerStyle(.inline)
+            }
+        }
+        .navigationTitle("Accent Color")
+    }
+}
+
+private struct SupportSettingsView: View {
+    @Environment(\.openURL) private var openURL
+
+    @Binding var supportTopic: AppSettingsView.SupportTopic
+    @Binding var supportDetails: String
+    @Binding var includesLogs: Bool
+    @Binding var supportErrorMessage: String?
+    let appearanceModeRaw: String
+    let accentColorRaw: String
+    let taigaBaseURL: String
+
+    var body: some View {
+        Form {
+            Section("Support Request") {
+                Picker("Topic", selection: $supportTopic) {
+                    ForEach(AppSettingsView.SupportTopic.allCases) { topic in
+                        Text(topic.rawValue).tag(topic)
+                    }
+                }
+                .pickerStyle(.menu)
+
+                TextField("What happened?", text: $supportDetails, axis: .vertical)
+                    .lineLimit(3...6)
+
+                Toggle("Include app logs", isOn: $includesLogs)
+
+                Button("Compose Support Email") {
+                    composeSupportEmail()
+                }
+
+                if let supportErrorMessage {
+                    Text(supportErrorMessage)
+                        .font(.footnote)
+                        .foregroundStyle(.red)
+                }
+            }
+        }
+        .navigationTitle("Support")
+    }
+
     private func composeSupportEmail() {
         let recipient = "correspondencesandrew@gmail.com"
         let subject = "Taiga iOS Support - \(supportTopic.rawValue)"
@@ -144,7 +221,13 @@ public struct AppSettingsView: View {
         ]
 
         if includesLogs {
-            bodyLines.append(contentsOf: supportLogLines())
+            bodyLines.append(
+                contentsOf: AppSettingsView.supportLogLines(
+                    appearanceModeRaw: appearanceModeRaw,
+                    accentColorRaw: accentColorRaw,
+                    taigaBaseURL: taigaBaseURL
+                )
+            )
         }
 
         let body = bodyLines.joined(separator: "\n")
@@ -165,22 +248,6 @@ public struct AppSettingsView: View {
                 supportErrorMessage = "No default email app is available."
             }
         }
-    }
-
-    private func supportLogLines() -> [String] {
-        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown"
-        let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "unknown"
-        let osVersion = ProcessInfo.processInfo.operatingSystemVersionString
-
-        return [
-            "App Logs:",
-            "- App version: \(appVersion) (\(buildNumber))",
-            "- OS: \(osVersion)",
-            "- Appearance: \(appearanceModeRaw)",
-            "- Accent color: \(accentColorRaw)",
-            "- Taiga API URL: \(taigaBaseURL)",
-            "- Timestamp: \(Date().formatted(date: .abbreviated, time: .standard))"
-        ]
     }
 }
 

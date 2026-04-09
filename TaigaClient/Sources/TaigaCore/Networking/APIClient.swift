@@ -44,6 +44,40 @@ public struct TaigaAPIClient: Sendable {
         }
     }
 
+    public func loginWithGitHub(code: String) async throws -> AuthToken {
+        var request = URLRequest(url: baseURL.appending(path: "auth"))
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let body: [String: String] = [
+            "type": "github",
+            "code": code
+        ]
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
+
+        do {
+            let (data, response) = try await session.data(for: request)
+            guard let http = response as? HTTPURLResponse else { throw TaigaError.unknown }
+            switch http.statusCode {
+            case 200:
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                guard let token = try? decoder.decode(AuthToken.self, from: data) else {
+                    throw TaigaError.decoding
+                }
+                return token
+            case 400:
+                throw TaigaError.invalidCredentials
+            default:
+                throw TaigaError.http(status: http.statusCode)
+            }
+        } catch let error as TaigaError {
+            throw error
+        } catch {
+            throw TaigaError.network(underlying: error)
+        }
+    }
+
     public func fetchProjects(token: AuthToken) async throws -> [ProjectSummary] {
         try await authorizedGet(path: "projects", token: token)
     }

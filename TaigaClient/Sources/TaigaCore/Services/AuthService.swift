@@ -40,6 +40,16 @@ public actor AuthService {
         return token
     }
 
+    @discardableResult
+    public func loginWithGitHub(code: String) async throws -> AuthToken {
+        let token = try await api.loginWithGitHub(code: code)
+        self.token = token
+        if let data = try? JSONEncoder().encode(token) {
+            try? keychain.set(data, for: tokenKey)
+        }
+        return token
+    }
+
     public func logout() {
         token = nil
         keychain.remove(tokenKey)

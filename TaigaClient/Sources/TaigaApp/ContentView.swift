@@ -7,11 +7,18 @@ struct ContentView: View {
     @State private var projectsViewModel: ProjectsViewModel
     private let itemsService: ItemsService
     private let authService: AuthService
+    private let gitHubConfig: GitHubOAuthConfig
 
-    init(authService: AuthService, projectsService: ProjectsService, itemsService: ItemsService = ItemsService()) {
+    init(
+        authService: AuthService,
+        projectsService: ProjectsService,
+        itemsService: ItemsService = ItemsService(),
+        gitHubConfig: GitHubOAuthConfig = .default
+    ) {
         self.authService = authService
         self.itemsService = itemsService
-        let authVM = AuthViewModel(authService: authService)
+        self.gitHubConfig = gitHubConfig
+        let authVM = AuthViewModel(authService: authService, gitHubConfig: gitHubConfig)
         _authViewModel = State(initialValue: authVM)
         _projectsViewModel = State(initialValue: ProjectsViewModel(projectsService: projectsService, authService: authService))
     }
@@ -31,11 +38,15 @@ struct ContentView: View {
                     }
                 )
             default:
-                LoginView(viewModel: authViewModel, onReset: {
-                    Swift.Task { @MainActor in
-                        authViewModel.resetSession()
+                LoginView(
+                    viewModel: authViewModel,
+                    enableGitHubAuth: gitHubConfig.isEnabled,
+                    onReset: {
+                        Swift.Task { @MainActor in
+                            authViewModel.resetSession()
+                        }
                     }
-                })
+                )
             }
         }
     }

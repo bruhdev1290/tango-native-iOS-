@@ -4,7 +4,6 @@ public actor AuthService {
     private let api: TaigaAPIClient
     private var token: AuthToken?
     private let keychain: KeychainStore
-    private let tokenKey = "taiga-auth-token"
 
     public init(api: TaigaAPIClient = TaigaAPIClient(), keychain: KeychainStore = KeychainStore()) {
         self.api = api
@@ -13,6 +12,10 @@ public actor AuthService {
            let saved = try? JSONDecoder().decode(AuthToken.self, from: data) {
             self.token = saved
         }
+    }
+
+    private var tokenKey: String {
+        "taiga-auth-token-\(api.baseURL.absoluteString)"
     }
 
     public func currentToken() -> AuthToken? {

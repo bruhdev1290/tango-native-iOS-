@@ -2,8 +2,16 @@ import SwiftUI
 import TaigaCore
 
 public struct ProjectsListView: View {
+    private enum ProjectsTab: String, CaseIterable, Identifiable {
+        case discovery = "Discovery"
+        case myWork = "My Work"
+
+        var id: String { rawValue }
+    }
+
     @Bindable private var viewModel: ProjectsViewModel
     @State private var searchText: String = ""
+    @State private var selectedTab: ProjectsTab = .myWork
     private let itemsService: ItemsService
     private let authService: AuthService
     private let onLogout: () -> Void
@@ -18,7 +26,7 @@ public struct ProjectsListView: View {
     public var body: some View {
         content
         .navigationTitle("Projects")
-        .searchable(text: $searchText, prompt: "Search projects")
+        .searchable(text: $searchText, prompt: selectedTab == .discovery ? "Search discovery" : "Search my work")
         .toolbar {
             Button("Logout") { onLogout() }
         }
@@ -37,28 +45,124 @@ public struct ProjectsListView: View {
                 Text(message).multilineTextAlignment(.center)
                 Button("Retry") { Swift.Task { await viewModel.load() } }
             }
-        case .loaded(let projects):
-            List(filteredProjects(projects)) { project in
-                NavigationLink {
-                    ProjectDetailView(
-                        viewModel: ItemsViewModel(
-                            itemsService: itemsService,
-                            authService: authService,
-                            projectId: project.id
-                        )
-                    )
-                } label: {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(project.name)
-                            .font(.headline)
-                        if let description = project.description, !description.isEmpty {
-                            Text(description)
-                                .foregroundStyle(.secondary)
-                                .lineLimit(2)
+        case .loaded(let projects, let myWork, let username):
+            let myProjectIds = Set(myWork.map(\.projectId))
+            let filteredMyProjects = filteredProjects(projects.filter { myProjectIds.contains($0.id) })
+            let filteredDiscoveryProjects = filteredProjects(projects.filter { !myProjectIds.contains($0.id) })
+            List {
+                Section {
+                    Picker("View", selection: $selectedTab) {
+                        ForEach(ProjectsTab.allCases) { tab in
+                            Text(tab.rawValue).tag(tab)
                         }
-                        Text(project.slug)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                    }
+                    .pickerStyle(.segmented)
+                }
+
+                if selectedTab == .myWork {
+                    let visibleMyWork = filteredMyWork(myWork)
+                    Section(username.map { "My Work (\($0))" } ?? "My Work") {
+                        if visibleMyWork.isEmpty {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("No assigned items found")
+                                    .font(.headline)
+                                Text("Your assigned stories/tasks will show here.")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        } else {
+                            ForEach(visibleMyWork) { item in
+                                NavigationLink {
+                                    ProjectDetailView(
+                                        viewModel: ItemsViewModel(
+                                            itemsService: itemsService,
+                                            authService: authService,
+                                            projectId: item.projectId
+                                        )
+                                    )
+                                } label: {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(item.subject)
+                                            .font(.headline)
+                                            .lineLimit(2)
+                                        HStack(spacing: 8) {
+                                            Text(item.projectName)
+                                                .font(.caption)
+                                                .foregroundStyle(.secondary)
+                                            Text(item.kind.rawValue)
+                                                .font(.caption2.weight(.semibold))
+                                                .padding(.horizontal, 8)
+                                                .padding(.vertical, 3)
+                                                .background(.thinMaterial, in: Capsule())
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Section("Your Projects") {
+                        if filteredMyProjects.isEmpty {
+                            Text("No related projects yet")
+                                .foregroundStyle(.secondary)
+                        } else {
+                            ForEach(filteredMyProjects) { project in
+                                NavigationLink {
+                                    ProjectDetailView(
+                                        viewModel: ItemsViewModel(
+                                            itemsService: itemsService,
+                                            authService: authService,
+                                            projectId: project.id
+                                        )
+                                    )
+                                } label: {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text(project.name)
+                                            .font(.headline)
+                                        if let description = project.description, !description.isEmpty {
+                                            Text(description)
+                                                .foregroundStyle(.secondary)
+                                                .lineLimit(2)
+                                        }
+                                        Text(project.slug)
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    Section("Discovery") {
+                        if filteredDiscoveryProjects.isEmpty {
+                            Text("No discovery projects found")
+                                .foregroundStyle(.secondary)
+                        }
+
+                        ForEach(filteredDiscoveryProjects) { project in
+                            NavigationLink {
+                                ProjectDetailView(
+                                    viewModel: ItemsViewModel(
+                                        itemsService: itemsService,
+                                        authService: authService,
+                                        projectId: project.id
+                                    )
+                                )
+                            } label: {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(project.name)
+                                        .font(.headline)
+                                    if let description = project.description, !description.isEmpty {
+                                        Text(description)
+                                            .foregroundStyle(.secondary)
+                                            .lineLimit(2)
+                                    }
+                                    Text(project.slug)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -86,13 +190,24 @@ public struct ProjectsListView: View {
                 || ($0.description?.localizedCaseInsensitiveContains(needle) ?? false)
         }
     }
+
+    private func filteredMyWork(_ items: [MyWorkItem]) -> [MyWorkItem] {
+        let needle = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !needle.isEmpty else { return items }
+        return items.filter {
+            $0.subject.localizedCaseInsensitiveContains(needle)
+                || $0.projectName.localizedCaseInsensitiveContains(needle)
+                || $0.kind.rawValue.localizedCaseInsensitiveContains(needle)
+        }
+    }
 }
 
 #Preview {
     ProjectsListView(
         viewModel: ProjectsViewModel(
             projectsService: ProjectsService(),
-            authService: AuthService()
+            authService: AuthService(),
+            itemsService: ItemsService()
         ),
         itemsService: ItemsService(),
         authService: AuthService(),

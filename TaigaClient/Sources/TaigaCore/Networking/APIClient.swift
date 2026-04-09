@@ -1,12 +1,71 @@
 import Foundation
 
-public struct TaigaAPIClient: Sendable {
-    public let baseURL: URL
+public final class TaigaAPIConfiguration: @unchecked Sendable {
+    public var baseURL: URL
+
+    public init(baseURL: URL) {
+        self.baseURL = baseURL
+    }
+}
+
+public struct TaigaAPIClient: @unchecked Sendable {
+    public static let defaultBaseURL = URL(string: "https://api.taiga.io/api/v1")!
+
+    private let configuration: TaigaAPIConfiguration
     private let session: URLSession
 
-    public init(baseURL: URL = URL(string: "https://api.taiga.io/api/v1")!, session: URLSession = .shared) {
-        self.baseURL = baseURL
+    public init(baseURL: URL = Self.defaultBaseURL, session: URLSession = .shared) {
+        self.configuration = TaigaAPIConfiguration(baseURL: Self.normalizeBaseURL(baseURL))
         self.session = session
+    }
+
+    public init(configuration: TaigaAPIConfiguration, session: URLSession = .shared) {
+        self.configuration = configuration
+        self.session = session
+    }
+
+    public var baseURL: URL {
+        configuration.baseURL
+    }
+
+    public func updateBaseURL(_ baseURL: URL) {
+        configuration.baseURL = Self.normalizeBaseURL(baseURL)
+    }
+
+    public static func normalizedBaseURL(from rawValue: String) -> URL? {
+        let trimmed = rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+
+        let prefixed: String
+        if trimmed.contains("://") {
+            prefixed = trimmed
+        } else {
+            prefixed = "https://\(trimmed)"
+        }
+
+        guard var components = URLComponents(string: prefixed) else { return nil }
+        if components.host == "tree.taiga.io" {
+            components.host = "api.taiga.io"
+        }
+        let path = components.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+        let pathSegments = path.split(separator: "/").map(String.init)
+
+        if pathSegments.suffix(2) == ["api", "v1"] {
+            components.path = "/" + pathSegments.joined(separator: "/")
+        } else if pathSegments.isEmpty {
+            components.path = "/api/v1"
+        } else {
+            components.path = "/" + pathSegments.joined(separator: "/") + "/api/v1"
+        }
+
+        return components.url
+    }
+
+    private static func normalizeBaseURL(_ baseURL: URL) -> URL {
+        guard let normalized = normalizedBaseURL(from: baseURL.absoluteString) else {
+            return baseURL
+        }
+        return normalized
     }
 
     public func login(username: String, password: String, type: String = "normal") async throws -> AuthToken {
@@ -82,12 +141,34 @@ public struct TaigaAPIClient: Sendable {
         try await authorizedGet(path: "projects", token: token)
     }
 
+    public func fetchCurrentUser(token: AuthToken) async throws -> CurrentUser {
+        try await authorizedGet(path: "users/me", token: token)
+    }
+
     public func fetchUserStories(projectId: Int, token: AuthToken) async throws -> [UserStory] {
         try await authorizedGet(path: "userstories", token: token, queryItems: [URLQueryItem(name: "project", value: "\(projectId)")])
     }
 
+    public func fetchAssignedUserStories(assigneeId: Int, token: AuthToken) async throws -> [UserStory] {
+        try await authorizedGet(
+            path: "userstories",
+            token: token,
+            queryItems: [URLQueryItem(name: "assigned_to", value: "\(assigneeId)")],
+            disablePagination: true
+        )
+    }
+
     public func fetchTasks(projectId: Int, token: AuthToken) async throws -> [Task] {
         try await authorizedGet(path: "tasks", token: token, queryItems: [URLQueryItem(name: "project", value: "\(projectId)")])
+    }
+
+    public func fetchAssignedTasks(assigneeId: Int, token: AuthToken) async throws -> [Task] {
+        try await authorizedGet(
+            path: "tasks",
+            token: token,
+            queryItems: [URLQueryItem(name: "assigned_to", value: "\(assigneeId)")],
+            disablePagination: true
+        )
     }
 
     public func fetchSprints(projectId: Int, token: AuthToken) async throws -> [Sprint] {
@@ -151,7 +232,7 @@ public struct TaigaAPIClient: Sendable {
 
     // MARK: - Helpers
 
-    private func authorizedGet<T: Decodable>(path: String, token: AuthToken, queryItems: [URLQueryItem]? = nil) async throws -> T {
+    private func authorizedGet<T: Decodable>(path: String, token: AuthToken, queryItems: [URLQueryItem]? = nil, disablePagination: Bool = false) async throws -> T {
         var components = URLComponents(url: baseURL.appending(path: path), resolvingAgainstBaseURL: false)!
         components.queryItems = queryItems
         guard let url = components.url else { throw TaigaError.unknown }
@@ -159,6 +240,9 @@ public struct TaigaAPIClient: Sendable {
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token.authToken)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
+        if disablePagination {
+            request.setValue("true", forHTTPHeaderField: "x-disable-pagination")
+        }
 
         do {
             let (data, response) = try await session.data(for: request)

@@ -6,7 +6,7 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>686B1A46-1A00-49B8-B2A9-680F468D92C5</key>
+		<key>4C572C35-399B-49F0-ACE8-CC2F0F7C74DE</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,49 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>686B1A46-1A00-49B8-B2A9-680F468D92C5.xcactivitylog</string>
+			<string>4C572C35-399B-49F0-ACE8-CC2F0F7C74DE.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>4</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>TaigaiOS project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>TaigaiOS</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project TaigaiOS with scheme TaigaiOS</string>
+			<key>timeStartedRecording</key>
+			<real>797437240.37878895</real>
+			<key>timeStoppedRecording</key>
+			<real>797437244.592237</real>
+			<key>title</key>
+			<string>Building project TaigaiOS with scheme TaigaiOS</string>
+			<key>uniqueIdentifier</key>
+			<string>4C572C35-399B-49F0-ACE8-CC2F0F7C74DE</string>
+		</dict>
+		<key>66FC83ED-DECD-475A-8D06-FE90D85BD4E0</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>66FC83ED-DECD-475A-8D06-FE90D85BD4E0.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -40,15 +82,15 @@
 			<key>signature</key>
 			<string>Building project TaigaiOS with scheme TaigaiOS</string>
 			<key>timeStartedRecording</key>
-			<real>797430892.34500301</real>
+			<real>797437442.50259805</real>
 			<key>timeStoppedRecording</key>
-			<real>797430896.76938701</real>
+			<real>797437446.29848802</real>
 			<key>title</key>
 			<string>Building project TaigaiOS with scheme TaigaiOS</string>
 			<key>uniqueIdentifier</key>
-			<string>686B1A46-1A00-49B8-B2A9-680F468D92C5</string>
+			<string>66FC83ED-DECD-475A-8D06-FE90D85BD4E0</string>
 		</dict>
-		<key>B4323A85-55F7-4364-BEAE-153E42502E91</key>
+		<key>6F6F1FEE-DB2B-4173-B49D-FB953D67F6CF</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -57,7 +99,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>B4323A85-55F7-4364-BEAE-153E42502E91.xcactivitylog</string>
+			<string>6F6F1FEE-DB2B-4173-B49D-FB953D67F6CF.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -74,21 +116,63 @@
 				<integer>0</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
-			<string>TaigaClient</string>
+			<string>TaigaiOS project</string>
 			<key>schemeIdentifier-schemeName</key>
-			<string>TaigaMobileApp</string>
+			<string>TaigaiOS</string>
 			<key>schemeIdentifier-sharedScheme</key>
 			<integer>1</integer>
 			<key>signature</key>
-			<string>Building workspace TaigaClient with scheme TaigaMobileApp and configuration Debug</string>
+			<string>Building project TaigaiOS with scheme TaigaiOS</string>
 			<key>timeStartedRecording</key>
-			<real>797426712.48879504</real>
+			<real>797436992.89875603</real>
 			<key>timeStoppedRecording</key>
-			<real>797426720.73618698</real>
+			<real>797436995.95352602</real>
 			<key>title</key>
-			<string>Building workspace TaigaClient with scheme TaigaMobileApp and configuration Debug</string>
+			<string>Building project TaigaiOS with scheme TaigaiOS</string>
 			<key>uniqueIdentifier</key>
-			<string>B4323A85-55F7-4364-BEAE-153E42502E91</string>
+			<string>6F6F1FEE-DB2B-4173-B49D-FB953D67F6CF</string>
+		</dict>
+		<key>D83094E4-D0AF-430B-89DF-18CE8CF5505C</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D83094E4-D0AF-430B-89DF-18CE8CF5505C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>4</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>TaigaiOS project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>TaigaiOS</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project TaigaiOS with scheme TaigaiOS</string>
+			<key>timeStartedRecording</key>
+			<real>797436869.16591799</real>
+			<key>timeStoppedRecording</key>
+			<real>797436873.05016005</real>
+			<key>title</key>
+			<string>Building project TaigaiOS with scheme TaigaiOS</string>
+			<key>uniqueIdentifier</key>
+			<string>D83094E4-D0AF-430B-89DF-18CE8CF5505C</string>
 		</dict>
 	</dict>
 </dict>

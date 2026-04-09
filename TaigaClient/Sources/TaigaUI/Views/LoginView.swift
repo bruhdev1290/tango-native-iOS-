@@ -3,17 +3,22 @@ import TaigaCore
 
 public struct LoginView: View {
     @Bindable private var viewModel: AuthViewModel
+    private let apiClient: TaigaAPIClient
     @State private var username: String = ""
     @State private var password: String = ""
-    private let onReset: () -> Void
+    @AppStorage("taiga-base-url") private var baseURLString: String = TaigaAPIClient.defaultBaseURL.absoluteString
+    @State private var connectionError: String?
+    private let onReset: () async -> Void
     private let enableGitHubAuth: Bool
 
     public init(
         viewModel: AuthViewModel,
+        apiClient: TaigaAPIClient,
         enableGitHubAuth: Bool = true,
-        onReset: @escaping () -> Void = {}
+        onReset: @escaping () async -> Void = {}
     ) {
         self.viewModel = viewModel
+        self.apiClient = apiClient
         self.enableGitHubAuth = enableGitHubAuth
         self.onReset = onReset
     }
@@ -28,6 +33,21 @@ public struct LoginView: View {
                     .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Taiga instance")
+                    .font(.headline)
+                TextField("https://api.taiga.io/api/v1", text: $baseURLString)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .keyboardType(.URL)
+                    .textContentType(.URL)
+                    .padding()
+                    .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
+                Text("If you enter tree.taiga.io, the app will use the API host automatically.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
 
             // Email/Password Form
             VStack(spacing: 12) {
@@ -45,7 +65,7 @@ public struct LoginView: View {
             }
 
             // Sign In Button
-            Button(action: { Swift.Task { await viewModel.login(username: username, password: password) } }) {
+            Button(action: { Swift.Task { await signIn() } }) {
                 HStack {
                     if case .loading = viewModel.state {
                         ProgressView()
@@ -86,17 +106,44 @@ public struct LoginView: View {
                     .multilineTextAlignment(.center)
             }
 
+            if let connectionError {
+                Text(connectionError)
+                    .foregroundColor(.red)
+                    .font(.footnote)
+                    .multilineTextAlignment(.center)
+            }
+
             Spacer()
 
             // Clear Session Button
             Button("Clear saved session") {
-                onReset()
+                Swift.Task {
+                    await onReset()
+                }
             }
             .buttonStyle(.borderless)
             .font(.footnote)
             .foregroundStyle(.secondary)
         }
         .padding(24)
+    }
+
+    @MainActor
+    private func signIn() async {
+        guard let normalizedBaseURL = TaigaAPIClient.normalizedBaseURL(from: baseURLString) else {
+            connectionError = "Enter a valid Taiga instance URL."
+            return
+        }
+
+        connectionError = nil
+
+        if apiClient.baseURL != normalizedBaseURL {
+            await onReset()
+            apiClient.updateBaseURL(normalizedBaseURL)
+        }
+
+        baseURLString = normalizedBaseURL.absoluteString
+        await viewModel.login(username: username, password: password)
     }
 }
 
@@ -141,5 +188,5 @@ struct GitHubSignInButton: View {
 }
 
 #Preview {
-    LoginView(viewModel: AuthViewModel(authService: AuthService()))
+    LoginView(viewModel: AuthViewModel(authService: AuthService()), apiClient: TaigaAPIClient())
 }

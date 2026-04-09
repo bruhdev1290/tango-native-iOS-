@@ -5,22 +5,29 @@ import TaigaUI
 struct ContentView: View {
     @State private var authViewModel: AuthViewModel
     @State private var projectsViewModel: ProjectsViewModel
+    private let apiClient: TaigaAPIClient
     private let itemsService: ItemsService
     private let authService: AuthService
     private let gitHubConfig: GitHubOAuthConfig
 
     init(
+        apiClient: TaigaAPIClient,
         authService: AuthService,
         projectsService: ProjectsService,
         itemsService: ItemsService = ItemsService(),
         gitHubConfig: GitHubOAuthConfig = .default
     ) {
+        self.apiClient = apiClient
         self.authService = authService
         self.itemsService = itemsService
         self.gitHubConfig = gitHubConfig
         let authVM = AuthViewModel(authService: authService, gitHubConfig: gitHubConfig)
         _authViewModel = State(initialValue: authVM)
-        _projectsViewModel = State(initialValue: ProjectsViewModel(projectsService: projectsService, authService: authService))
+        _projectsViewModel = State(initialValue: ProjectsViewModel(
+            projectsService: projectsService,
+            authService: authService,
+            itemsService: itemsService
+        ))
     }
 
     var body: some View {
@@ -40,9 +47,10 @@ struct ContentView: View {
             default:
                 LoginView(
                     viewModel: authViewModel,
+                    apiClient: apiClient,
                     enableGitHubAuth: gitHubConfig.isEnabled,
                     onReset: {
-                        Swift.Task { @MainActor in
+                        await MainActor.run {
                             authViewModel.resetSession()
                         }
                     }
@@ -53,5 +61,11 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(authService: AuthService(), projectsService: ProjectsService())
+    let apiClient = TaigaAPIClient()
+    ContentView(
+        apiClient: apiClient,
+        authService: AuthService(api: apiClient),
+        projectsService: ProjectsService(api: apiClient),
+        itemsService: ItemsService(api: apiClient)
+    )
 }

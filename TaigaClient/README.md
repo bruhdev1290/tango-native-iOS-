@@ -18,11 +18,13 @@ If you host Taiga yourself, change the base URL when creating `TaigaAPIClient`:
 let api = TaigaAPIClient(baseURL: URL(string: "https://yourdomain.example.com/api/v1")!)
 ```
 Pass this instance into `AuthService` / `ProjectsService`.
+The app also lets you enter the Taiga API base URL on the login screen and stores it in UserDefaults, so you can switch instances without editing code.
+The public Taiga web front end is `https://tree.taiga.io/`, but its API is served from `https://api.taiga.io/api/v1`. If you type `tree.taiga.io`, the app rewrites it to the API host to avoid 405 errors.
 
 ### What’s implemented
 - Normal login (`POST /api/v1/auth`) with `username`, `password`, `type: normal`.
 - Bearer-authenticated `GET /api/v1/projects` to fetch project summaries.
-- SwiftUI screens: login form, project list with retry and loading states.
+- SwiftUI screens: login form with Taiga instance URL entry, project list with retry and loading states.
 - Async/await networking, lightweight error handling, and preview stubs.
 
 ### What’s new (persistence + backlog endpoints)

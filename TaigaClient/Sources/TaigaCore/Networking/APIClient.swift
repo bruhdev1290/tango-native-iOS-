@@ -72,6 +72,7 @@ public struct TaigaAPIClient: @unchecked Sendable {
         var request = URLRequest(url: baseURL.appending(path: "auth"))
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 20
 
         let body: [String: String] = [
             "type": type,
@@ -107,6 +108,7 @@ public struct TaigaAPIClient: @unchecked Sendable {
         var request = URLRequest(url: baseURL.appending(path: "auth"))
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 20
 
         let body: [String: String] = [
             "type": "github",
@@ -141,6 +143,18 @@ public struct TaigaAPIClient: @unchecked Sendable {
         try await authorizedGet(path: "projects", token: token)
     }
 
+    public func fetchProjects(memberId: Int, token: AuthToken) async throws -> [ProjectSummary] {
+        try await authorizedGet(
+            path: "projects",
+            token: token,
+            queryItems: [
+                URLQueryItem(name: "member", value: "\(memberId)"),
+                URLQueryItem(name: "order_by", value: "memberships__user_order")
+            ],
+            disablePagination: true
+        )
+    }
+
     public func fetchCurrentUser(token: AuthToken) async throws -> CurrentUser {
         try await authorizedGet(path: "users/me", token: token)
     }
@@ -165,6 +179,15 @@ public struct TaigaAPIClient: @unchecked Sendable {
     public func fetchAssignedTasks(assigneeId: Int, token: AuthToken) async throws -> [Task] {
         try await authorizedGet(
             path: "tasks",
+            token: token,
+            queryItems: [URLQueryItem(name: "assigned_to", value: "\(assigneeId)")],
+            disablePagination: true
+        )
+    }
+
+    public func fetchAssignedIssues(assigneeId: Int, token: AuthToken) async throws -> [Issue] {
+        try await authorizedGet(
+            path: "issues",
             token: token,
             queryItems: [URLQueryItem(name: "assigned_to", value: "\(assigneeId)")],
             disablePagination: true
@@ -210,6 +233,7 @@ public struct TaigaAPIClient: @unchecked Sendable {
         var request = URLRequest(url: baseURL.appending(path: "auth/refresh"))
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = 20
         let body = ["refresh": refreshToken]
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
 
@@ -240,6 +264,7 @@ public struct TaigaAPIClient: @unchecked Sendable {
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token.authToken)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
+        request.timeoutInterval = 20
         if disablePagination {
             request.setValue("true", forHTTPHeaderField: "x-disable-pagination")
         }
@@ -268,6 +293,7 @@ public struct TaigaAPIClient: @unchecked Sendable {
         request.setValue("Bearer \(token.authToken)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = method
+        request.timeoutInterval = 20
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
 
         do {

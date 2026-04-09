@@ -25,8 +25,7 @@ struct ContentView: View {
         _authViewModel = State(initialValue: authVM)
         _projectsViewModel = State(initialValue: ProjectsViewModel(
             projectsService: projectsService,
-            authService: authService,
-            itemsService: itemsService
+            authService: authService
         ))
     }
 

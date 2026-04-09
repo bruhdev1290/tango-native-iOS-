@@ -24,9 +24,15 @@ public struct ProjectsListView: View {
     }
 
     public var body: some View {
-        content
+        Group {
+            if selectedTab == .discovery {
+                content
+                    .searchable(text: $searchText, prompt: "Search discovery")
+            } else {
+                content
+            }
+        }
         .navigationTitle("Projects")
-        .searchable(text: $searchText, prompt: selectedTab == .discovery ? "Search discovery" : "Search my work")
         .toolbar {
             Button("Logout") { onLogout() }
         }
@@ -45,10 +51,15 @@ public struct ProjectsListView: View {
                 Text(message).multilineTextAlignment(.center)
                 Button("Retry") { Swift.Task { await viewModel.load() } }
             }
-        case .loaded(let projects, let myWork, let username):
-            let myProjectIds = Set(myWork.map(\.projectId))
-            let filteredMyProjects = filteredProjects(projects.filter { myProjectIds.contains($0.id) })
-            let filteredDiscoveryProjects = filteredProjects(projects.filter { !myProjectIds.contains($0.id) })
+        case .loaded(
+            let projects,
+            let myWork,
+            let username,
+            let relatedProjectIds
+        ):
+            let relatedSet = Set(relatedProjectIds)
+            let myProjects = projects.filter { relatedSet.contains($0.id) }
+            let filteredDiscoveryProjects = filteredProjects(projects.filter { !relatedSet.contains($0.id) })
             List {
                 Section {
                     Picker("View", selection: $selectedTab) {
@@ -60,7 +71,7 @@ public struct ProjectsListView: View {
                 }
 
                 if selectedTab == .myWork {
-                    let visibleMyWork = filteredMyWork(myWork)
+                    let visibleMyWork = myWork
                     Section(username.map { "My Work (\($0))" } ?? "My Work") {
                         if visibleMyWork.isEmpty {
                             VStack(alignment: .leading, spacing: 4) {
@@ -102,11 +113,11 @@ public struct ProjectsListView: View {
                     }
 
                     Section("Your Projects") {
-                        if filteredMyProjects.isEmpty {
+                        if myProjects.isEmpty {
                             Text("No related projects yet")
                                 .foregroundStyle(.secondary)
                         } else {
-                            ForEach(filteredMyProjects) { project in
+                            ForEach(myProjects) { project in
                                 NavigationLink {
                                     ProjectDetailView(
                                         viewModel: ItemsViewModel(
@@ -190,24 +201,13 @@ public struct ProjectsListView: View {
                 || ($0.description?.localizedCaseInsensitiveContains(needle) ?? false)
         }
     }
-
-    private func filteredMyWork(_ items: [MyWorkItem]) -> [MyWorkItem] {
-        let needle = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !needle.isEmpty else { return items }
-        return items.filter {
-            $0.subject.localizedCaseInsensitiveContains(needle)
-                || $0.projectName.localizedCaseInsensitiveContains(needle)
-                || $0.kind.rawValue.localizedCaseInsensitiveContains(needle)
-        }
-    }
 }
 
 #Preview {
     ProjectsListView(
         viewModel: ProjectsViewModel(
             projectsService: ProjectsService(),
-            authService: AuthService(),
-            itemsService: ItemsService()
+            authService: AuthService()
         ),
         itemsService: ItemsService(),
         authService: AuthService(),

@@ -11,6 +11,10 @@ public actor ProjectsService {
         try await api.fetchProjects(token: token)
     }
 
+    public func relatedProjects(memberId: Int, using token: AuthToken) async throws -> [ProjectSummary] {
+        try await api.fetchProjects(memberId: memberId, token: token)
+    }
+
     public func currentUser(using token: AuthToken) async throws -> CurrentUser {
         try await api.fetchCurrentUser(token: token)
     }
@@ -22,4 +26,9 @@ public actor ProjectsService {
     public func assignedTasks(assigneeId: Int, using token: AuthToken) async throws -> [Task] {
         try await api.fetchAssignedTasks(assigneeId: assigneeId, token: token)
     }
+
+    public func assignedIssues(assigneeId: Int, using token: AuthToken) async throws -> [Issue] {
+        try await api.fetchAssignedIssues(assigneeId: assigneeId, token: token)
+    }
+
 }

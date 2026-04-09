@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaClientPackageTests.build/primary.swiftdeps"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaClientPackageTests.derived/runner.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaClientPackageTests.build/runner.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaClientPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaClientPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaClientPackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaClientPackageTests.build/runner.dia"
+  }
+}

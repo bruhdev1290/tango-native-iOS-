@@ -60,6 +60,37 @@ public struct TaigaAPIClient: Sendable {
         try await authorizedGet(path: "milestones", token: token, queryItems: [URLQueryItem(name: "project", value: "\(projectId)")])
     }
 
+    public func createUserStory(projectId: Int, subject: String, token: AuthToken) async throws -> UserStory {
+        let body: [String: Any] = [
+            "project": projectId,
+            "subject": subject
+        ]
+        return try await authorizedRequest(path: "userstories", method: "POST", body: body, token: token)
+    }
+
+    public func updateUserStory(id: Int, subject: String, status: Int?, assignedTo: Int?, token: AuthToken) async throws -> UserStory {
+        var body: [String: Any] = ["subject": subject]
+        body["status"] = status as Any
+        body["assigned_to"] = assignedTo as Any
+        return try await authorizedRequest(path: "userstories/\(id)", method: "PATCH", body: body, token: token)
+    }
+
+    public func createTask(projectId: Int, subject: String, userStoryId: Int?, token: AuthToken) async throws -> Task {
+        var body: [String: Any] = [
+            "project": projectId,
+            "subject": subject
+        ]
+        body["user_story"] = userStoryId as Any
+        return try await authorizedRequest(path: "tasks", method: "POST", body: body, token: token)
+    }
+
+    public func updateTask(id: Int, subject: String, status: Int?, assignedTo: Int?, token: AuthToken) async throws -> Task {
+        var body: [String: Any] = ["subject": subject]
+        body["status"] = status as Any
+        body["assigned_to"] = assignedTo as Any
+        return try await authorizedRequest(path: "tasks/\(id)", method: "PATCH", body: body, token: token)
+    }
+
     public func refresh(refreshToken: String) async throws -> AuthToken {
         var request = URLRequest(url: baseURL.appending(path: "auth/refresh"))
         request.httpMethod = "POST"
@@ -101,6 +132,33 @@ public struct TaigaAPIClient: Sendable {
             guard 200..<300 ~= http.statusCode else {
                 throw TaigaError.http(status: http.statusCode)
             }
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            guard let decoded = try? decoder.decode(T.self, from: data) else {
+                throw TaigaError.decoding
+            }
+            return decoded
+        } catch let error as TaigaError {
+            throw error
+        } catch {
+            throw TaigaError.network(underlying: error)
+        }
+    }
+
+    private func authorizedRequest<T: Decodable>(path: String, method: String, body: [String: Any], token: AuthToken) async throws -> T {
+        var request = URLRequest(url: baseURL.appending(path: path))
+        request.setValue("Bearer \(token.authToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = method
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
+
+        do {
+            let (data, response) = try await session.data(for: request)
+            guard let http = response as? HTTPURLResponse else { throw TaigaError.unknown }
+            guard 200..<300 ~= http.statusCode else {
+                throw TaigaError.http(status: http.statusCode)
+            }
+
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             guard let decoded = try? decoder.decode(T.self, from: data) else {

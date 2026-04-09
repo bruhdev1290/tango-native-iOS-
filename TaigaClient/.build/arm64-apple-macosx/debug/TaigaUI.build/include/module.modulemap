@@ -1,0 +1,3 @@
+module TaigaUI {
+    header "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/include/TaigaUI-Swift.h"
+}

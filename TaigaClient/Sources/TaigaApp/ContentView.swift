@@ -25,14 +25,14 @@ struct ContentView: View {
                     itemsService: itemsService,
                     authService: authService,
                     onLogout: {
-                        Task { @MainActor in
+                        Swift.Task { @MainActor in
                             authViewModel.logout()
                         }
                     }
                 )
             default:
                 LoginView(viewModel: authViewModel, onReset: {
-                    Task { @MainActor in
+                    Swift.Task { @MainActor in
                         authViewModel.resetSession()
                     }
                 })

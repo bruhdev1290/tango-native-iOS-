@@ -1,0 +1,47 @@
+{
+  "": {
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/primary.swiftdeps"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/AuthViewModel.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AuthViewModel.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AuthViewModel.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AuthViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AuthViewModel.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AuthViewModel.dia"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/ItemsViewModel.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ItemsViewModel.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ItemsViewModel.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ItemsViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ItemsViewModel.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ItemsViewModel.dia"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/ProjectsViewModel.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsViewModel.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsViewModel.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsViewModel.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsViewModel.dia"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/LoginView.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/LoginView.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/LoginView.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/LoginView~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/LoginView.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/LoginView.dia"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/ProjectDetailView.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectDetailView.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectDetailView.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectDetailView~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectDetailView.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectDetailView.dia"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/ProjectsListView.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsListView.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsListView.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsListView~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsListView.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsListView.dia"
+  }
+}

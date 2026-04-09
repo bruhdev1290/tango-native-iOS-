@@ -1,0 +1,4 @@
+module TaigaCore {
+header "TaigaCore-Swift.h"
+export *
+}

@@ -17,8 +17,13 @@ public final class AuthViewModel {
 
     public init(authService: AuthService) {
         self.authService = authService
-        if let cached = authService.currentToken() {
-            self.state = .authenticated(cached)
+        Swift.Task { [weak self] in
+            guard let self else { return }
+            if let cached = await authService.currentToken() {
+                await MainActor.run {
+                    self.state = .authenticated(cached)
+                }
+            }
         }
     }
 
@@ -43,7 +48,9 @@ public final class AuthViewModel {
 
     @MainActor
     public func logout() {
-        authService.logout()
+        Swift.Task {
+            await authService.logout()
+        }
         state = .idle
     }
 

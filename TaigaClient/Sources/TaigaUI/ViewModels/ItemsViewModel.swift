@@ -12,6 +12,7 @@ public final class ItemsViewModel {
     }
 
     @MainActor public private(set) var state: State = .idle
+    @MainActor public private(set) var lastUpdated: Date?
 
     private let itemsService: ItemsService
     private let authService: AuthService
@@ -33,8 +34,45 @@ public final class ItemsViewModel {
             async let sprints = itemsService.sprints(projectId: projectId, token: token)
             let result = try await (stories, tasks, sprints)
             state = .loaded(stories: result.0, tasks: result.1, sprints: result.2)
+            lastUpdated = Date()
         } catch {
             state = .failed(error.localizedDescription)
         }
+    }
+
+    @MainActor
+    public func createStory(subject: String) async throws {
+        let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !normalized.isEmpty else { return }
+        let token = try await authService.authenticatedToken()
+        _ = try await itemsService.createUserStory(projectId: projectId, subject: normalized, token: token)
+        await load()
+    }
+
+    @MainActor
+    public func createTask(subject: String, userStoryId: Int?) async throws {
+        let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !normalized.isEmpty else { return }
+        let token = try await authService.authenticatedToken()
+        _ = try await itemsService.createTask(projectId: projectId, subject: normalized, userStoryId: userStoryId, token: token)
+        await load()
+    }
+
+    @MainActor
+    public func updateStory(id: Int, subject: String, status: Int?, assignedTo: Int?) async throws {
+        let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !normalized.isEmpty else { return }
+        let token = try await authService.authenticatedToken()
+        _ = try await itemsService.updateUserStory(id: id, subject: normalized, status: status, assignedTo: assignedTo, token: token)
+        await load()
+    }
+
+    @MainActor
+    public func updateTask(id: Int, subject: String, status: Int?, assignedTo: Int?) async throws {
+        let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !normalized.isEmpty else { return }
+        let token = try await authService.authenticatedToken()
+        _ = try await itemsService.updateTask(id: id, subject: normalized, status: status, assignedTo: assignedTo, token: token)
+        await load()
     }
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Task: Codable, Identifiable, Sendable {
+public struct Task: Codable, Identifiable, Sendable, Equatable {
     public let id: Int
     public let project: Int?
     public let userStory: Int?

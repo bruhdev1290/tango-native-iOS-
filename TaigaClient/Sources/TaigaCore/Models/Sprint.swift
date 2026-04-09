@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Sprint: Codable, Identifiable, Sendable {
+public struct Sprint: Codable, Identifiable, Sendable, Equatable {
     public let id: Int
     public let project: Int?
     public let name: String

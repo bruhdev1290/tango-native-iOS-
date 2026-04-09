@@ -1,6 +1,6 @@
 import Foundation
 
-public struct UserStory: Codable, Identifiable, Sendable {
+public struct UserStory: Codable, Identifiable, Sendable, Equatable {
     public let id: Int
     public let project: Int?
     public let subject: String

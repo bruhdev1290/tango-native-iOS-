@@ -31,7 +31,7 @@ public struct LoginView: View {
                 .padding()
                 .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
 
-            Button(action: { Task { await viewModel.login(username: username, password: password) } }) {
+            Button(action: { Swift.Task { await viewModel.login(username: username, password: password) } }) {
                 HStack {
                     if case .loading = viewModel.state {
                         ProgressView()

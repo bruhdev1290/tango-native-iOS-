@@ -12,6 +12,7 @@ public final class ProjectsViewModel {
     }
 
     @MainActor public private(set) var state: State = .idle
+    @MainActor public private(set) var lastUpdated: Date?
 
     private let projectsService: ProjectsService
     private let authService: AuthService
@@ -28,6 +29,7 @@ public final class ProjectsViewModel {
             let token = try await authService.authenticatedToken()
             let projects = try await projectsService.listProjects(using: token)
             state = .loaded(projects)
+            lastUpdated = Date()
         } catch {
             state = .failed(error.localizedDescription)
         }

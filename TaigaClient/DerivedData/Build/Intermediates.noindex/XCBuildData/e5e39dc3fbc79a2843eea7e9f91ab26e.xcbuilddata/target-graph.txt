@@ -1,0 +1,7 @@
+Target dependency graph (3 targets)
+Target 'TaigaMobileApp' in project 'TaigaClient'
+➜ Explicit dependency on target 'TaigaCore' in project 'TaigaClient'
+➜ Explicit dependency on target 'TaigaUI' in project 'TaigaClient'
+Target 'TaigaUI' in project 'TaigaClient'
+➜ Explicit dependency on target 'TaigaCore' in project 'TaigaClient'
+Target 'TaigaCore' in project 'TaigaClient' (no dependencies)

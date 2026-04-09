@@ -1,0 +1,3 @@
+module TaigaClientPackageTests {
+    header "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaClientPackageTests.build/include/TaigaClientPackageTests-Swift.h"
+}

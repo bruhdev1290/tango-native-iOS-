@@ -36,6 +36,16 @@
     "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/ProjectsViewModel.swiftdeps",
     "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/ProjectsViewModel~partial.swiftmodule"
   },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/AppSettingsView.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/AppSettingsView.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/AppSettingsView.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/AppSettingsView.dia",
+    "index-unit-output-path" : "/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/AppSettingsView.o",
+    "llvm-bc" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/AppSettingsView.bc",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/AppSettingsView.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/AppSettingsView.swiftdeps",
+    "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/AppSettingsView~partial.swiftmodule"
+  },
   "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/LoginView.swift" : {
     "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/LoginView.swiftconstvalues",
     "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaUI.build/Objects-normal/arm64/LoginView.d",

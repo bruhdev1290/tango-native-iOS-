@@ -26,6 +26,36 @@
     "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AuthToken.swiftdeps",
     "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AuthToken~partial.swiftmodule"
   },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/CurrentUser.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/CurrentUser.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/CurrentUser.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/CurrentUser.dia",
+    "index-unit-output-path" : "/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/CurrentUser.o",
+    "llvm-bc" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/CurrentUser.bc",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/CurrentUser.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/CurrentUser.swiftdeps",
+    "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/CurrentUser~partial.swiftmodule"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Issue.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Issue.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Issue.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Issue.dia",
+    "index-unit-output-path" : "/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Issue.o",
+    "llvm-bc" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Issue.bc",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Issue.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Issue.swiftdeps",
+    "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Issue~partial.swiftmodule"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Membership.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Membership.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Membership.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Membership.dia",
+    "index-unit-output-path" : "/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Membership.o",
+    "llvm-bc" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Membership.bc",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Membership.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Membership.swiftdeps",
+    "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/Membership~partial.swiftmodule"
+  },
   "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/ProjectSummary.swift" : {
     "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/ProjectSummary.swiftconstvalues",
     "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/ProjectSummary.d",

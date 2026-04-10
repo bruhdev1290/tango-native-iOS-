@@ -29,33 +29,56 @@ public struct AppSettingsView: View {
     }
 
     fileprivate enum AccentColorOption: String, CaseIterable, Identifiable {
-        case system
-        case blue
-        case green
+        case blueberry
+        case strawberry
         case orange
-        case red
+        case banana
+        case green
+        case mint
+        case teal
+        case grape
+        case pink
+        case platinum
+        case indigo
 
         var id: String { rawValue }
 
         var title: String {
             switch self {
-            case .system:
-                return "System"
-            case .blue:
-                return "Blue"
-            case .green:
-                return "Green"
-            case .orange:
-                return "Orange"
-            case .red:
-                return "Red"
+            case .blueberry: return "Blueberry"
+            case .strawberry: return "Strawberry"
+            case .orange: return "Orange"
+            case .banana: return "Banana"
+            case .green: return "Green"
+            case .mint: return "Mint"
+            case .teal: return "Teal"
+            case .grape: return "Grape"
+            case .pink: return "Pink"
+            case .platinum: return "Platinum"
+            case .indigo: return "Indigo"
+            }
+        }
+
+        var color: Color {
+            switch self {
+            case .blueberry: return Color(red: 0.0, green: 0.48, blue: 1.0)
+            case .strawberry: return Color(red: 1.0, green: 0.27, blue: 0.23)
+            case .orange: return Color(red: 1.0, green: 0.58, blue: 0.0)
+            case .banana: return Color(red: 1.0, green: 0.8, blue: 0.0)
+            case .green: return Color(red: 0.2, green: 0.78, blue: 0.35)
+            case .mint: return Color(red: 0.0, green: 0.78, blue: 0.75)
+            case .teal: return Color(red: 0.35, green: 0.78, blue: 0.85)
+            case .grape: return Color(red: 0.6, green: 0.4, blue: 0.9)
+            case .pink: return Color(red: 1.0, green: 0.3, blue: 0.5)
+            case .platinum: return Color(red: 0.55, green: 0.55, blue: 0.58)
+            case .indigo: return Color(red: 0.35, green: 0.35, blue: 0.85)
             }
         }
     }
 
     @Environment(\.dismiss) private var dismiss
     @AppStorage("app-appearance-mode") private var appearanceModeRaw: String = AppearanceMode.system.rawValue
-    @AppStorage("app-accent-color") private var accentColorRaw: String = AccentColorOption.system.rawValue
+    @AppStorage("app-accent-color") private var accentColorRaw: String = AccentColorOption.blueberry.rawValue
     @AppStorage("taiga-base-url") private var taigaBaseURL: String = "https://api.taiga.io/api/v1"
 
     @State private var supportTopic: SupportTopic = .errors
@@ -153,18 +176,103 @@ private struct AppearanceSettingsView: View {
 private struct AccentColorSettingsView: View {
     @Binding var accentColorRaw: String
 
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+
     var body: some View {
-        Form {
-            Section("Tint") {
-                Picker("Accent color", selection: $accentColorRaw) {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                Text("Accent Color")
+                    .font(.headline)
+                    .padding(.horizontal, 16)
+
+                LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(AppSettingsView.AccentColorOption.allCases) { option in
-                        Text(option.title).tag(option.rawValue)
+                        ColorOptionButton(
+                            option: option,
+                            isSelected: accentColorRaw == option.rawValue
+                        ) {
+                            accentColorRaw = option.rawValue
+                        }
                     }
                 }
-                .pickerStyle(.inline)
+                .padding(.horizontal, 16)
+
+                // Preview Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Preview")
+                        .font(.headline)
+                        .padding(.horizontal, 16)
+
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Text("Sample Text")
+                                .font(.title3.weight(.semibold))
+                            Spacer()
+                            Text("Button")
+                                .font(.subheadline.weight(.medium))
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(selectedColor)
+                                .foregroundStyle(.white)
+                                .clipShape(Capsule())
+                        }
+
+                        Text("This is how your interface will look with the selected accent color.")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(16)
+                    .background(Color(.systemGray6))
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .padding(.horizontal, 16)
+                }
             }
+            .padding(.vertical, 16)
         }
         .navigationTitle("Accent Color")
+        .navigationBarTitleDisplayMode(.inline)
+        .background(Color(.systemBackground))
+    }
+
+    private var selectedColor: Color {
+        AppSettingsView.AccentColorOption.allCases
+            .first { $0.rawValue == accentColorRaw }?.color ?? .blue
+    }
+}
+
+private struct ColorOptionButton: View {
+    let option: AppSettingsView.AccentColorOption
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 8) {
+                Circle()
+                    .fill(option.color)
+                    .frame(width: 56, height: 56)
+                    .overlay(
+                        Circle()
+                            .stroke(Color.white, lineWidth: isSelected ? 4 : 0)
+                            .padding(isSelected ? 2 : 0)
+                    )
+                    .overlay(
+                        Circle()
+                            .stroke(isSelected ? option.color.opacity(0.5) : Color.clear, lineWidth: isSelected ? 2 : 0)
+                    )
+
+                Text(option.title)
+                    .font(.caption)
+                    .foregroundStyle(.primary)
+            }
+        }
+        .buttonStyle(.plain)
     }
 }
 

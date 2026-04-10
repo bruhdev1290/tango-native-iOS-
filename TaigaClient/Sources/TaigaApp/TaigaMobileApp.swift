@@ -22,30 +22,37 @@ struct TaigaMobileApp: App {
     }
 
     private enum AccentColorOption: String {
-        case system
-        case blue
-        case green
+        case blueberry
+        case strawberry
         case orange
-        case red
+        case banana
+        case green
+        case mint
+        case teal
+        case grape
+        case pink
+        case platinum
+        case indigo
 
         var color: Color {
             switch self {
-            case .system:
-                return .accentColor
-            case .blue:
-                return .blue
-            case .green:
-                return .green
-            case .orange:
-                return .orange
-            case .red:
-                return .red
+            case .blueberry: return Color(red: 0.0, green: 0.48, blue: 1.0)
+            case .strawberry: return Color(red: 1.0, green: 0.27, blue: 0.23)
+            case .orange: return Color(red: 1.0, green: 0.58, blue: 0.0)
+            case .banana: return Color(red: 1.0, green: 0.8, blue: 0.0)
+            case .green: return Color(red: 0.2, green: 0.78, blue: 0.35)
+            case .mint: return Color(red: 0.0, green: 0.78, blue: 0.75)
+            case .teal: return Color(red: 0.35, green: 0.78, blue: 0.85)
+            case .grape: return Color(red: 0.6, green: 0.4, blue: 0.9)
+            case .pink: return Color(red: 1.0, green: 0.3, blue: 0.5)
+            case .platinum: return Color(red: 0.55, green: 0.55, blue: 0.58)
+            case .indigo: return Color(red: 0.35, green: 0.35, blue: 0.85)
             }
         }
     }
 
     @AppStorage("app-appearance-mode") private var appearanceModeRaw: String = AppearanceMode.system.rawValue
-    @AppStorage("app-accent-color") private var accentColorRaw: String = AccentColorOption.system.rawValue
+    @AppStorage("app-accent-color") private var accentColorRaw: String = AccentColorOption.blueberry.rawValue
     private let apiClient: TaigaAPIClient
     private let authService: AuthService
     private let projectsService: ProjectsService
@@ -92,6 +99,6 @@ struct TaigaMobileApp: App {
     }
 
     private var accentColor: AccentColorOption {
-        AccentColorOption(rawValue: accentColorRaw) ?? .system
+        AccentColorOption(rawValue: accentColorRaw) ?? .blueberry
     }
 }

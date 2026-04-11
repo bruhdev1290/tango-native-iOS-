@@ -159,6 +159,15 @@ public struct TaigaAPIClient: @unchecked Sendable {
         try await authorizedGet(path: "users/me", token: token)
     }
 
+    public func fetchMemberships(projectId: Int, token: AuthToken) async throws -> [Membership] {
+        try await authorizedGet(
+            path: "memberships",
+            token: token,
+            queryItems: [URLQueryItem(name: "project", value: "\(projectId)")],
+            disablePagination: true
+        )
+    }
+
     public func fetchUserStories(projectId: Int, token: AuthToken) async throws -> [UserStory] {
         try await authorizedGet(path: "userstories", token: token, queryItems: [URLQueryItem(name: "project", value: "\(projectId)")])
     }
@@ -174,6 +183,10 @@ public struct TaigaAPIClient: @unchecked Sendable {
 
     public func fetchTasks(projectId: Int, token: AuthToken) async throws -> [Task] {
         try await authorizedGet(path: "tasks", token: token, queryItems: [URLQueryItem(name: "project", value: "\(projectId)")])
+    }
+
+    public func fetchIssues(projectId: Int, token: AuthToken) async throws -> [Issue] {
+        try await authorizedGet(path: "issues", token: token, queryItems: [URLQueryItem(name: "project", value: "\(projectId)")])
     }
 
     public func fetchAssignedTasks(assigneeId: Int, token: AuthToken) async throws -> [Task] {
@@ -198,12 +211,39 @@ public struct TaigaAPIClient: @unchecked Sendable {
         try await authorizedGet(path: "milestones", token: token, queryItems: [URLQueryItem(name: "project", value: "\(projectId)")])
     }
 
-    public func createUserStory(projectId: Int, subject: String, token: AuthToken) async throws -> UserStory {
-        let body: [String: Any] = [
+    public func createUserStory(
+        projectId: Int,
+        subject: String,
+        description: String?,
+        tags: [String],
+        assignedTo: Int?,
+        attachments: [AttachmentUpload],
+        token: AuthToken
+    ) async throws -> UserStory {
+        var body: [String: Any] = [
             "project": projectId,
             "subject": subject
         ]
-        return try await authorizedRequest(path: "userstories", method: "POST", body: body, token: token)
+        if let description, !description.isEmpty {
+            body["description"] = description
+        }
+        if !tags.isEmpty {
+            body["tags"] = tags
+        }
+        if let assignedTo {
+            body["assigned_to"] = assignedTo
+        }
+        let story: UserStory = try await authorizedRequest(path: "userstories", method: "POST", body: body, token: token)
+        for attachment in attachments {
+            try await uploadAttachment(
+                path: "userstories/attachments",
+                projectId: projectId,
+                objectId: story.id,
+                attachment: attachment,
+                token: token
+            )
+        }
+        return story
     }
 
     public func updateUserStory(id: Int, subject: String, status: Int?, assignedTo: Int?, token: AuthToken) async throws -> UserStory {
@@ -222,11 +262,77 @@ public struct TaigaAPIClient: @unchecked Sendable {
         return try await authorizedRequest(path: "tasks", method: "POST", body: body, token: token)
     }
 
+    public func createTask(projectId: Int, subject: String, userStoryId: Int?, assignedTo: Int?, token: AuthToken) async throws -> Task {
+        var body: [String: Any] = [
+            "project": projectId,
+            "subject": subject
+        ]
+        body["user_story"] = userStoryId as Any
+        if let assignedTo {
+            body["assigned_to"] = assignedTo
+        }
+        return try await authorizedRequest(path: "tasks", method: "POST", body: body, token: token)
+    }
+
+    public func createIssue(
+        projectId: Int,
+        subject: String,
+        description: String?,
+        tags: [String],
+        severity: Int?,
+        priority: Int?,
+        issueType: Int?,
+        assignedTo: Int?,
+        attachments: [AttachmentUpload],
+        token: AuthToken
+    ) async throws -> Issue {
+        var body: [String: Any] = [
+            "project": projectId,
+            "subject": subject
+        ]
+        if let description, !description.isEmpty {
+            body["description"] = description
+        }
+        if !tags.isEmpty {
+            body["tags"] = tags
+        }
+        if let severity {
+            body["severity"] = severity
+        }
+        if let priority {
+            body["priority"] = priority
+        }
+        if let issueType {
+            body["type"] = issueType
+        }
+        if let assignedTo {
+            body["assigned_to"] = assignedTo
+        }
+        let issue: Issue = try await authorizedRequest(path: "issues", method: "POST", body: body, token: token)
+        for attachment in attachments {
+            try await uploadAttachment(
+                path: "issues/attachments",
+                projectId: projectId,
+                objectId: issue.id,
+                attachment: attachment,
+                token: token
+            )
+        }
+        return issue
+    }
+
     public func updateTask(id: Int, subject: String, status: Int?, assignedTo: Int?, token: AuthToken) async throws -> Task {
         var body: [String: Any] = ["subject": subject]
         body["status"] = status as Any
         body["assigned_to"] = assignedTo as Any
         return try await authorizedRequest(path: "tasks/\(id)", method: "PATCH", body: body, token: token)
+    }
+
+    public func updateIssue(id: Int, subject: String, status: Int?, assignedTo: Int?, token: AuthToken) async throws -> Issue {
+        var body: [String: Any] = ["subject": subject]
+        body["status"] = status as Any
+        body["assigned_to"] = assignedTo as Any
+        return try await authorizedRequest(path: "issues/\(id)", method: "PATCH", body: body, token: token)
     }
 
     public func refresh(refreshToken: String) async throws -> AuthToken {
@@ -313,6 +419,80 @@ public struct TaigaAPIClient: @unchecked Sendable {
             throw error
         } catch {
             throw TaigaError.network(underlying: error)
+        }
+    }
+
+    private func uploadAttachment(
+        path: String,
+        projectId: Int,
+        objectId: Int,
+        attachment: AttachmentUpload,
+        token: AuthToken
+    ) async throws {
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var request = URLRequest(url: baseURL.appending(path: path))
+        request.setValue("Bearer \(token.authToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.timeoutInterval = 60
+
+        let body = multipartBody(
+            boundary: boundary,
+            fields: [
+                "project": "\(projectId)",
+                "object_id": "\(objectId)"
+            ],
+            fileFieldName: "attached_file",
+            fileName: attachment.fileName,
+            mimeType: attachment.mimeType,
+            fileData: attachment.data
+        )
+
+        do {
+            let (data, response) = try await session.upload(for: request, from: body)
+            guard let http = response as? HTTPURLResponse else { throw TaigaError.unknown }
+            guard 200..<300 ~= http.statusCode else {
+                _ = String(data: data, encoding: .utf8)
+                throw TaigaError.http(status: http.statusCode)
+            }
+        } catch let error as TaigaError {
+            throw error
+        } catch {
+            throw TaigaError.network(underlying: error)
+        }
+    }
+
+    private func multipartBody(
+        boundary: String,
+        fields: [String: String],
+        fileFieldName: String,
+        fileName: String,
+        mimeType: String,
+        fileData: Data
+    ) -> Data {
+        var data = Data()
+        let lineBreak = "\r\n"
+
+        for (name, value) in fields {
+            data.append("--\(boundary)\(lineBreak)")
+            data.append("Content-Disposition: form-data; name=\"\(name)\"\(lineBreak)\(lineBreak)")
+            data.append("\(value)\(lineBreak)")
+        }
+
+        data.append("--\(boundary)\(lineBreak)")
+        data.append("Content-Disposition: form-data; name=\"\(fileFieldName)\"; filename=\"\(fileName)\"\(lineBreak)")
+        data.append("Content-Type: \(mimeType)\(lineBreak)\(lineBreak)")
+        data.append(fileData)
+        data.append(lineBreak)
+        data.append("--\(boundary)--\(lineBreak)")
+        return data
+    }
+}
+
+private extension Data {
+    mutating func append(_ string: String) {
+        if let value = string.data(using: .utf8) {
+            append(value)
         }
     }
 }

@@ -6,6 +6,8 @@ public struct Task: Codable, Identifiable, Sendable, Equatable {
     public let userStory: Int?
     public let subject: String
     public let status: Int?
+    public let createdDate: Date?
+    public let modifiedDate: Date?
     public let assignedTo: Int?
     public let dueDate: String?
     public let dueDateReason: String?
@@ -15,6 +17,8 @@ public struct Task: Codable, Identifiable, Sendable, Equatable {
     enum CodingKeys: String, CodingKey {
         case id, project, subject, status
         case userStory = "user_story"
+        case createdDate = "created_date"
+        case modifiedDate = "modified_date"
         case assignedTo = "assigned_to"
         case dueDate = "due_date"
         case dueDateReason = "due_date_reason"

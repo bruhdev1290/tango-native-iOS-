@@ -1,4 +1,6 @@
 import SwiftUI
+import TaigaCore
+import UserNotifications
 
 public struct AppSettingsView: View {
     fileprivate enum SupportTopic: String, CaseIterable, Identifiable {
@@ -105,6 +107,12 @@ public struct AppSettingsView: View {
                         AccentColorSettingsView(accentColorRaw: $accentColorRaw)
                     } label: {
                         Label("Accent Color", systemImage: "paintpalette")
+                    }
+
+                    NavigationLink {
+                        NotificationSettingsView()
+                    } label: {
+                        Label("Notifications", systemImage: "bell")
                     }
                 }
 
@@ -389,6 +397,94 @@ private struct SupportSettingsView: View {
                 supportErrorMessage = "No default email app is available."
             }
         }
+    }
+}
+
+private struct NotificationSettingsView: View {
+    @AppStorage("notify-assigned-items") private var notifyAssignedItems: Bool = true
+    @AppStorage("notify-new-items") private var notifyNewItems: Bool = true
+    @AppStorage("notify-sound") private var notifySound: Bool = true
+    @State private var authorizationStatus: UNAuthorizationStatus = .notDetermined
+    @State private var isCheckingAuth = true
+
+    var body: some View {
+        Form {
+            Section("Notification Preferences") {
+                Toggle("New Assigned Items", isOn: $notifyAssignedItems)
+                    .onChange(of: notifyAssignedItems) {
+                        if notifyAssignedItems {
+                            requestNotificationAuth()
+                        }
+                    }
+
+                Toggle("New Items in Projects", isOn: $notifyNewItems)
+                    .onChange(of: notifyNewItems) {
+                        if notifyNewItems {
+                            requestNotificationAuth()
+                        }
+                    }
+
+                Toggle("Sound", isOn: $notifySound)
+            }
+
+            Section("System") {
+                if authorizationStatus == .authorized {
+                    Label("Notifications Enabled", systemImage: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
+                } else if authorizationStatus == .denied {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Label("Notifications Disabled", systemImage: "xmark.circle.fill")
+                            .foregroundStyle(.red)
+                        
+                        Button(action: openSettings) {
+                            Label("Open Settings", systemImage: "gear")
+                                .font(.subheadline)
+                        }
+                        .buttonStyle(.bordered)
+                    }
+                } else {
+                    HStack {
+                        ProgressView()
+                            .scaleEffect(0.8)
+                        Text("Checking permission...")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+
+            Section("About") {
+                Text("Receive notifications when items are assigned to you or added to projects you're a member of.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .navigationTitle("Notifications")
+        .task {
+            await checkAuthorizationStatus()
+        }
+    }
+
+    private func requestNotificationAuth() {
+        Swift.Task {
+            let authorized = await NotificationManager.shared.requestAuthorization()
+            await MainActor.run {
+                authorizationStatus = authorized ? .authorized : .denied
+            }
+        }
+    }
+
+    private func checkAuthorizationStatus() async {
+        let settings = await UNUserNotificationCenter.current().notificationSettings()
+        await MainActor.run {
+            authorizationStatus = settings.authorizationStatus
+            isCheckingAuth = false
+        }
+    }
+
+    private func openSettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url)
     }
 }
 

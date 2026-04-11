@@ -439,6 +439,18 @@ public struct TaigaAPIClient: @unchecked Sendable {
         return try await authorizedRequest(path: "issues/\(id)", method: "PATCH", body: body, token: token)
     }
 
+    public func deleteUserStory(id: Int, token: AuthToken) async throws {
+        try await authorizedDelete(path: "userstories/\(id)", token: token)
+    }
+
+    public func deleteTask(id: Int, token: AuthToken) async throws {
+        try await authorizedDelete(path: "tasks/\(id)", token: token)
+    }
+
+    public func deleteIssue(id: Int, token: AuthToken) async throws {
+        try await authorizedDelete(path: "issues/\(id)", token: token)
+    }
+
     public func refresh(refreshToken: String) async throws -> AuthToken {
         var request = URLRequest(url: baseURL.appending(path: "auth/refresh"))
         request.httpMethod = "POST"
@@ -519,6 +531,25 @@ public struct TaigaAPIClient: @unchecked Sendable {
                 throw TaigaError.decoding
             }
             return decoded
+        } catch let error as TaigaError {
+            throw error
+        } catch {
+            throw TaigaError.network(underlying: error)
+        }
+    }
+
+    private func authorizedDelete(path: String, token: AuthToken) async throws {
+        var request = URLRequest(url: baseURL.appending(path: path))
+        request.setValue("Bearer \(token.authToken)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "DELETE"
+        request.timeoutInterval = 20
+
+        do {
+            let (_, response) = try await session.data(for: request)
+            guard let http = response as? HTTPURLResponse else { throw TaigaError.unknown }
+            guard 200..<300 ~= http.statusCode else {
+                throw TaigaError.http(status: http.statusCode)
+            }
         } catch let error as TaigaError {
             throw error
         } catch {

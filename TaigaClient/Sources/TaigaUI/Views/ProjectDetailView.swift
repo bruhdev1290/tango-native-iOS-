@@ -39,6 +39,12 @@ private struct PickedAttachment: Identifiable {
 }
 
 public struct ProjectDetailView: View {
+    private enum CompletionKind: String {
+        case story
+        case task
+        case issue
+    }
+
     private enum DisplayFilter: String, CaseIterable, Identifiable {
         case all = "All"
         case sprints = "Sprints"
@@ -55,6 +61,7 @@ public struct ProjectDetailView: View {
     @State private var statusFilter: Int?
     @State private var assigneeFilter: Int?
     @State private var activeSheet: ItemSheet?
+    @AppStorage("completed-backlog-items") private var completedItemsRaw: String = ""
 
     public init(viewModel: ItemsViewModel) {
         self.viewModel = viewModel
@@ -145,6 +152,7 @@ public struct ProjectDetailView: View {
                     availableStatuses: [],
                     availableAssignees: [],
                     mentionSuggestions: viewModel.mentionSuggestions(for:),
+                    onDelete: nil,
                     onSubmit: { draft in
                         try await viewModel.createStory(
                             subject: draft.subject,
@@ -169,6 +177,7 @@ public struct ProjectDetailView: View {
                     availableStatuses: [],
                     availableAssignees: [],
                     mentionSuggestions: viewModel.mentionSuggestions(for:),
+                    onDelete: nil,
                     onSubmit: { draft in
                         try await viewModel.createTask(
                             subject: draft.subject,
@@ -190,6 +199,7 @@ public struct ProjectDetailView: View {
                     availableStatuses: [],
                     availableAssignees: [],
                     mentionSuggestions: viewModel.mentionSuggestions(for:),
+                    onDelete: nil,
                     onSubmit: { draft in
                         try await viewModel.createIssue(
                             subject: draft.subject,
@@ -216,6 +226,9 @@ public struct ProjectDetailView: View {
                     availableStatuses: availableStatusesFromState(),
                     availableAssignees: availableAssigneesFromState(),
                     mentionSuggestions: viewModel.mentionSuggestions(for:),
+                    onDelete: {
+                        try await viewModel.deleteStory(id: story.id)
+                    },
                     onSubmit: { draft in
                         try await viewModel.updateStory(
                             id: story.id,
@@ -240,6 +253,9 @@ public struct ProjectDetailView: View {
                     availableStatuses: availableStatusesFromState(),
                     availableAssignees: availableAssigneesFromState(),
                     mentionSuggestions: viewModel.mentionSuggestions(for:),
+                    onDelete: {
+                        try await viewModel.deleteTask(id: task.id)
+                    },
                     onSubmit: { draft in
                         try await viewModel.updateTask(
                             id: task.id,
@@ -263,6 +279,9 @@ public struct ProjectDetailView: View {
                     availableStatuses: availableStatusesFromState(),
                     availableAssignees: availableAssigneesFromState(),
                     mentionSuggestions: viewModel.mentionSuggestions(for:),
+                    onDelete: {
+                        try await viewModel.deleteIssue(id: issue.id)
+                    },
                     onSubmit: { draft in
                         try await viewModel.updateIssue(
                             id: issue.id,
@@ -322,12 +341,17 @@ public struct ProjectDetailView: View {
                                     if let assigned = story.assignedTo { badge("Assignee #\(assigned)") }
                                     if let dueDate = story.dueDate { badge("Due \(dueDate)") }
                                     if story.isBlocked == true { badge("Blocked") }
+                                    if isCompleted(.story, id: story.id) { badge("Completed") }
                                     if let points = story.points, !points.isEmpty { badge("Points \(points.count)") }
                                 }
                             }
                             .swipeActions {
                                 Button("Edit") { activeSheet = .editStory(story) }
                                     .tint(.blue)
+                                Button(isCompleted(.story, id: story.id) ? "Undo" : "Complete") {
+                                    toggleCompleted(.story, id: story.id)
+                                }
+                                .tint(.green)
                             }
                         }
                     }
@@ -342,11 +366,16 @@ public struct ProjectDetailView: View {
                                     if let assigned = task.assignedTo { badge("Assignee #\(assigned)") }
                                     if let dueDate = task.dueDate { badge("Due \(dueDate)") }
                                     if task.isBlocked == true { badge("Blocked") }
+                                    if isCompleted(.task, id: task.id) { badge("Completed") }
                                 }
                             }
                             .swipeActions {
                                 Button("Edit") { activeSheet = .editTask(task) }
                                     .tint(.blue)
+                                Button(isCompleted(.task, id: task.id) ? "Undo" : "Complete") {
+                                    toggleCompleted(.task, id: task.id)
+                                }
+                                .tint(.green)
                             }
                         }
                     }
@@ -362,11 +391,16 @@ public struct ProjectDetailView: View {
                                     if let assigned = issue.assignedTo { badge("Assignee #\(assigned)") }
                                     if let dueDate = issue.dueDate { badge("Due \(dueDate)") }
                                     if issue.isBlocked == true { badge("Blocked") }
+                                    if isCompleted(.issue, id: issue.id) { badge("Completed") }
                                 }
                             }
                             .swipeActions {
                                 Button("Edit") { activeSheet = .editIssue(issue) }
                                     .tint(.blue)
+                                Button(isCompleted(.issue, id: issue.id) ? "Undo" : "Complete") {
+                                    toggleCompleted(.issue, id: issue.id)
+                                }
+                                .tint(.green)
                             }
                         }
                     }
@@ -480,6 +514,29 @@ public struct ProjectDetailView: View {
         return availableAssignees(stories: stories, tasks: tasks, issues: issues)
     }
 
+    private var completedItems: Set<String> {
+        Set(completedItemsRaw.split(separator: "|").map(String.init))
+    }
+
+    private func completionKey(_ kind: CompletionKind, id: Int) -> String {
+        "\(kind.rawValue)-\(id)"
+    }
+
+    private func isCompleted(_ kind: CompletionKind, id: Int) -> Bool {
+        completedItems.contains(completionKey(kind, id: id))
+    }
+
+    private func toggleCompleted(_ kind: CompletionKind, id: Int) {
+        let key = completionKey(kind, id: id)
+        var set = completedItems
+        if set.contains(key) {
+            set.remove(key)
+        } else {
+            set.insert(key)
+        }
+        completedItemsRaw = set.sorted().joined(separator: "|")
+    }
+
 }
 
 private struct BacklogItemEditor: View {
@@ -498,6 +555,7 @@ private struct BacklogItemEditor: View {
     let availableStatuses: [Int]
     let availableAssignees: [Int]
     let mentionSuggestions: (String) -> [ItemsViewModel.MentionCandidate]
+    let onDelete: (() async throws -> Void)?
     let onSubmit: (BacklogDraft) async throws -> Void
 
     @Environment(\.dismiss) private var dismiss
@@ -521,6 +579,8 @@ private struct BacklogItemEditor: View {
     @State private var assignee: Int?
     @State private var isSaving = false
     @State private var validationError: String?
+    @State private var isDeleting = false
+    @State private var showsDeleteConfirmation = false
 
     var body: some View {
         NavigationStack {
@@ -654,6 +714,21 @@ private struct BacklogItemEditor: View {
                             .foregroundStyle(.red)
                     }
                 }
+
+                if canDelete {
+                    Section("Danger Zone") {
+                        Button(role: .destructive) {
+                            showsDeleteConfirmation = true
+                        } label: {
+                            if isDeleting {
+                                ProgressView()
+                            } else {
+                                Text("Delete")
+                            }
+                        }
+                        .disabled(isSaving || isDeleting)
+                    }
+                }
             }
             .navigationTitle(title)
             .toolbar {
@@ -668,6 +743,18 @@ private struct BacklogItemEditor: View {
                 }
             }
             .task { seedValuesIfNeeded() }
+        }
+        .confirmationDialog(
+            "Delete this item?",
+            isPresented: $showsDeleteConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Delete", role: .destructive) {
+                Swift.Task { await deleteItem() }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This action cannot be undone.")
         }
         .fileImporter(
             isPresented: $showsFileImporter,
@@ -795,6 +882,10 @@ private struct BacklogItemEditor: View {
         default:
             return false
         }
+    }
+
+    private var canDelete: Bool {
+        onDelete != nil
     }
 
     private func seedValuesIfNeeded() {
@@ -986,6 +1077,19 @@ private struct BacklogItemEditor: View {
                     issuePriority: parsedOptionalInt(issuePriorityText)
                 )
             )
+            dismiss()
+        } catch {
+            validationError = error.localizedDescription
+        }
+    }
+
+    private func deleteItem() async {
+        guard let onDelete else { return }
+        isDeleting = true
+        defer { isDeleting = false }
+
+        do {
+            try await onDelete()
             dismiss()
         } catch {
             validationError = error.localizedDescription

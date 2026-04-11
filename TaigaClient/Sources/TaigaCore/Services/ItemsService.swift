@@ -192,4 +192,16 @@ public actor ItemsService {
             token: token
         )
     }
+
+    public func deleteUserStory(id: Int, token: AuthToken) async throws {
+        try await api.deleteUserStory(id: id, token: token)
+    }
+
+    public func deleteTask(id: Int, token: AuthToken) async throws {
+        try await api.deleteTask(id: id, token: token)
+    }
+
+    public func deleteIssue(id: Int, token: AuthToken) async throws {
+        try await api.deleteIssue(id: id, token: token)
+    }
 }

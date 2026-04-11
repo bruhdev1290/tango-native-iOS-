@@ -31,4 +31,16 @@ public actor ProjectsService {
         try await api.fetchAssignedIssues(assigneeId: assigneeId, token: token)
     }
 
+    public func userStories(projectId: Int, using token: AuthToken) async throws -> [UserStory] {
+        try await api.fetchUserStories(projectId: projectId, token: token)
+    }
+
+    public func tasks(projectId: Int, using token: AuthToken) async throws -> [Task] {
+        try await api.fetchTasks(projectId: projectId, token: token)
+    }
+
+    public func issues(projectId: Int, using token: AuthToken) async throws -> [Issue] {
+        try await api.fetchIssues(projectId: projectId, token: token)
+    }
+
 }

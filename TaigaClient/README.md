@@ -22,23 +22,47 @@ The app also lets you enter the Taiga API base URL on the login screen and store
 The public Taiga web front end is `https://tree.taiga.io/`, but its API is served from `https://api.taiga.io/api/v1`. If you type `tree.taiga.io`, the app rewrites it to the API host to avoid 405 errors.
 
 ### What’s implemented
-- Normal login (`POST /api/v1/auth`) with `username`, `password`, `type: normal`.
-- Bearer-authenticated `GET /api/v1/projects` to fetch project summaries.
-- SwiftUI screens: login form with Taiga instance URL entry, project list with retry and loading states.
+- Normal login (`POST /api/v1/auth`) with `username`, `password`, `type: normal` and GitHub OAuth.
+- Bearer-authenticated `GET /api/v1/projects` with member filtering for your projects.
+- SwiftUI screens: login form with Taiga instance URL entry, projects home screen, backlog screens, activity feed.
 - Async/await networking, lightweight error handling, and preview stubs.
+- Token persistence in iOS Keychain with automatic token refresh.
+- **Backlog Management**: Full CRUD for user stories, tasks, and issues with inline editing.
+- **Notifications**: Local push notifications for assigned items and new project activity.
+- **Activity Aggregation**: Smart deduplication and timestamp-based sorting for cross-project feeds.
+- **Item State**: Complete/incomplete marking with AppStorage persistence.
+- **Settings**: Dark/light/system appearance, accent color customization, notification preferences, GitHub link.
 
 ### What’s new (persistence + backlog endpoints)
 - Auth token is stored in the iOS Keychain and restored on app launch; call `AuthService.logout()` to clear it.
 - New models and API wrappers for user stories, tasks, and sprints (milestones) filtered by project.
 - Basic backlog UI: projects list navigates to a backlog screen showing sprints, user stories, and tasks.
 - Settings now includes an `Account` section with `Logout` and a `GitHub` submenu linking to the project repository: `https://github.com/bruhdev1290/tango-native-iOS-`.
-- Token refresh scaffolded: `AuthService.authenticatedToken()` will refresh using `POST /api/v1/auth/refresh` when an `expires` value is close. citeturn0search0
+- Token refresh scaffolded: `AuthService.authenticatedToken()` will refresh using `POST /api/v1/auth/refresh` when an `expires` value is close.
+
+### Recent Major Features
+- **Liquid Glass UI**: Beautiful glassmorphic bottom tab bar with smooth animations between Home and Activity tabs.
+- **Activity Feed**: Comprehensive cross-project activity aggregation showing assigned items and items from member projects, sorted by timestamp with deduplication.
+- **My Work Section**: Horizontal carousel on home screen showing all items assigned to the user across all projects.
+- **Project Photos**: Automatic fetching and display of project logos/photos with intelligent URL fallback and initials display.
+- **Item Lifecycle Management**:
+  - Create new user stories, tasks, and issues with full attachment support
+  - Edit existing items with inline updates
+  - Mark items as complete/incomplete with client-side persistence
+  - Delete items with confirmation dialogs and proper error handling
+- **On-Device Notifications**: Receive local notifications for newly assigned items and new items added to member projects. Customizable via Settings > Notifications.
+- **Activity Filters**: Filter the Activity feed by item type (Stories/Tasks/Issues) and by source (Assigned to Me/In My Projects). Accessible via the slider icon on the Activity tab.
+- **Search**: Search projects you're a member of with autocomplete.
 
 ### Next steps
-- Add epics, notifications, attachments endpoints and richer detail screens.
+- Add epics, kanban board views, and comments functionality.
 - Add offline caching with `URLCache` or `SQLite` (e.g., GRDB).
-- Extend UI with filtering/search and editing for stories/tasks/sprints.
+- Extend search to include issues and cross-project search.
+- Add bulk operations (multi-select, batch assign, batch tag).
 - Ship CI (Xcode Cloud or fastlane + GitHub Actions) and TestFlight builds.
+- Add undo/trash recovery for deleted items.
+- Implement activity feed date-grouped sections (Today/Yesterday/Earlier).
+- Add notification persistence and in-app notification center.
 
 ## Project layout
 - `TaigaCore`: networking + models

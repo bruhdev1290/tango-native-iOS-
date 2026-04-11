@@ -91,6 +91,9 @@ struct TaigaMobileApp: App {
             )
             .preferredColorScheme(appearanceMode.colorScheme)
             .tint(accentColor.color)
+            .task {
+                await requestNotificationPermission()
+            }
         }
     }
 
@@ -100,5 +103,15 @@ struct TaigaMobileApp: App {
 
     private var accentColor: AccentColorOption {
         AccentColorOption(rawValue: accentColorRaw) ?? .blueberry
+    }
+
+    private func requestNotificationPermission() async {
+        let notifyAssigned = UserDefaults.standard.bool(forKey: "notify-assigned-items") || !UserDefaults.standard.bool(forKey: "notify-assigned-items-set")
+        let notifyNew = UserDefaults.standard.bool(forKey: "notify-new-items") || !UserDefaults.standard.bool(forKey: "notify-new-items-set")
+        
+        if (notifyAssigned || notifyNew) && !UserDefaults.standard.bool(forKey: "notification-permission-requested") {
+            _ = await NotificationManager.shared.requestAuthorization()
+            UserDefaults.standard.set(true, forKey: "notification-permission-requested")
+        }
     }
 }

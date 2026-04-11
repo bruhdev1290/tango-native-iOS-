@@ -294,6 +294,27 @@ public final class ItemsViewModel {
     }
 
     @MainActor
+    public func deleteStory(id: Int) async throws {
+        let token = try await authService.authenticatedToken()
+        try await itemsService.deleteUserStory(id: id, token: token)
+        await load()
+    }
+
+    @MainActor
+    public func deleteTask(id: Int) async throws {
+        let token = try await authService.authenticatedToken()
+        try await itemsService.deleteTask(id: id, token: token)
+        await load()
+    }
+
+    @MainActor
+    public func deleteIssue(id: Int) async throws {
+        let token = try await authService.authenticatedToken()
+        try await itemsService.deleteIssue(id: id, token: token)
+        await load()
+    }
+
+    @MainActor
     private func resolveAssigneeId(from mention: String?, token: AuthToken) async throws -> Int? {
         guard let mention else { return nil }
         let value = mention.trimmingCharacters(in: .whitespacesAndNewlines)

@@ -6,7 +6,7 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>72F28411-7E8C-4747-84C4-95FAD334D1D2</key>
+		<key>161B83A0-C452-4883-91DE-D15049371AD5</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>72F28411-7E8C-4747-84C4-95FAD334D1D2.xcactivitylog</string>
+			<string>161B83A0-C452-4883-91DE-D15049371AD5.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -29,26 +29,26 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>2</integer>
+				<integer>5</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
-			<string>TaigaiOS project</string>
+			<string>Tranga project</string>
 			<key>schemeIdentifier-schemeName</key>
-			<string>TaigaiOS</string>
+			<string>Tranga</string>
 			<key>schemeIdentifier-sharedScheme</key>
 			<integer>1</integer>
 			<key>signature</key>
-			<string>Building project TaigaiOS with scheme TaigaiOS and configuration Debug</string>
+			<string>Building project Tranga with scheme Tranga and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>797602978.51506603</real>
+			<real>797612833.30979896</real>
 			<key>timeStoppedRecording</key>
-			<real>797602984.19410205</real>
+			<real>797612836.40560806</real>
 			<key>title</key>
-			<string>Building project TaigaiOS with scheme TaigaiOS and configuration Debug</string>
+			<string>Building project Tranga with scheme Tranga and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>72F28411-7E8C-4747-84C4-95FAD334D1D2</string>
+			<string>161B83A0-C452-4883-91DE-D15049371AD5</string>
 		</dict>
-		<key>76A201F9-2D21-4EFF-BCBD-310598201FC1</key>
+		<key>4E350C4B-2B32-49C8-B108-DAFF84E6EE36</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -57,13 +57,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>76A201F9-2D21-4EFF-BCBD-310598201FC1.xcactivitylog</string>
+			<string>4E350C4B-2B32-49C8-B108-DAFF84E6EE36.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 				<key>totalNumberOfAnalyzerIssues</key>
 				<integer>0</integer>
 				<key>totalNumberOfErrors</key>
@@ -71,24 +71,108 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
+				<integer>5</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
-			<string>TaigaiOS project</string>
+			<string>Tranga project</string>
 			<key>schemeIdentifier-schemeName</key>
-			<string>TaigaiOS</string>
+			<string>Tranga</string>
 			<key>schemeIdentifier-sharedScheme</key>
 			<integer>1</integer>
 			<key>signature</key>
-			<string>Building project TaigaiOS with scheme TaigaiOS and configuration Debug</string>
+			<string>Building project Tranga with scheme Tranga and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>797601252.74562597</real>
+			<real>797613243.609231</real>
 			<key>timeStoppedRecording</key>
-			<real>797601256.47933996</real>
+			<real>797613246.58803403</real>
 			<key>title</key>
-			<string>Building project TaigaiOS with scheme TaigaiOS and configuration Debug</string>
+			<string>Building project Tranga with scheme Tranga and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>76A201F9-2D21-4EFF-BCBD-310598201FC1</string>
+			<string>4E350C4B-2B32-49C8-B108-DAFF84E6EE36</string>
+		</dict>
+		<key>A21DDEBC-59C9-486B-8F7D-0A21786CF07A</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>A21DDEBC-59C9-486B-8F7D-0A21786CF07A.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>19</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Tranga project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Tranga</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Tranga with scheme Tranga and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>797613161.95373297</real>
+			<key>timeStoppedRecording</key>
+			<real>797613167.402372</real>
+			<key>title</key>
+			<string>Building project Tranga with scheme Tranga and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>A21DDEBC-59C9-486B-8F7D-0A21786CF07A</string>
+		</dict>
+		<key>BEED537F-441E-47C3-8C8E-2DE8F3DE5559</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>BEED537F-441E-47C3-8C8E-2DE8F3DE5559.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>25</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Tranga project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Tranga</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Tranga with scheme Tranga and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>797612740.58205998</real>
+			<key>timeStoppedRecording</key>
+			<real>797612759.60873902</real>
+			<key>title</key>
+			<string>Building project Tranga with scheme Tranga and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>BEED537F-441E-47C3-8C8E-2DE8F3DE5559</string>
 		</dict>
 	</dict>
 </dict>

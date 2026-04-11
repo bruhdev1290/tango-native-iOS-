@@ -1,0 +1,63 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "9dbfe00dd761725d74af6b81c3b79877bd24228931b8ee436ab7e2ed4f1d667c"
+    }
+  ],
+  "containerPath" : "/Users/andrew/tango-native-iOS-/TaigaClient/Tranga.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "undefined_arch",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : true,
+      "hostTargetedPlatform" : null,
+      "platform" : "iphonesimulator",
+      "sdk" : "iphonesimulator26.4",
+      "sdkVariant" : "iphonesimulator",
+      "supportedArchitectures" : [
+        "i386",
+        "x86_64"
+      ],
+      "targetArchitecture" : "undefined_arch"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Products",
+      "derivedDataPath" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+          "SDKROOT" : "iphonesimulator26.4"
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "YES"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

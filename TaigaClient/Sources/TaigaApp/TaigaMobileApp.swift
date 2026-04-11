@@ -65,7 +65,7 @@ struct TaigaMobileApp: App {
     // 3. Copy the Client ID and paste it below
     // 4. Add the URL scheme to your Info.plist
     private let gitHubConfig = GitHubOAuthConfig(
-        clientId: "", // Add your GitHub Client ID here
+        clientId: "Ov23liQi3EZ5OUrg9OHu",
         callbackURLScheme: "taiga"
     )
 

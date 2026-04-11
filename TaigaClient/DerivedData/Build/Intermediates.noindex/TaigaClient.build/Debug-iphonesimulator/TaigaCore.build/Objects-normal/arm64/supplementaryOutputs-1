@@ -1,0 +1,23 @@
+{
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/GitHubOAuthConfig.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/GitHubOAuthConfig.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/GitHubOAuthConfig.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/GitHubOAuthConfig.dia",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/GitHubOAuthConfig.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/GitHubOAuthConfig.swiftdeps"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AttachmentUpload.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AttachmentUpload.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AttachmentUpload.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AttachmentUpload.dia",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AttachmentUpload.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AttachmentUpload.swiftdeps"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AuthToken.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AuthToken.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AuthToken.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AuthToken.dia",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AuthToken.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/TaigaClient.build/Debug-iphonesimulator/TaigaCore.build/Objects-normal/arm64/AuthToken.swiftdeps"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "" : {
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/Tranga-primary.dia",
+    "emit-module-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/Tranga-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/Tranga-primary-emit-module.dia",
+    "pch" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/Tranga-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/Tranga-primary.swiftdeps"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaApp/ContentView.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaApp/SplashScreenView.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/SplashScreenView.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/SplashScreenView.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/SplashScreenView.dia",
+    "index-unit-output-path" : "/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/SplashScreenView.o",
+    "llvm-bc" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/SplashScreenView.bc",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/SplashScreenView.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/SplashScreenView.swiftdeps",
+    "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/SplashScreenView~partial.swiftmodule"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaApp/TaigaMobileApp.swift" : {
+    "const-values" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/TaigaMobileApp.swiftconstvalues",
+    "dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/TaigaMobileApp.d",
+    "diagnostics" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/TaigaMobileApp.dia",
+    "index-unit-output-path" : "/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/TaigaMobileApp.o",
+    "llvm-bc" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/TaigaMobileApp.bc",
+    "object" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/TaigaMobileApp.o",
+    "swift-dependencies" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/TaigaMobileApp.swiftdeps",
+    "swiftmodule" : "/Users/andrew/tango-native-iOS-/TaigaClient/DerivedData/Build/Intermediates.noindex/Tranga.build/Debug-iphonesimulator/Tranga.build/Objects-normal/arm64/TaigaMobileApp~partial.swiftmodule"
+  }
+}

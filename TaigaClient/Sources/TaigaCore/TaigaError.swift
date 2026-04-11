@@ -2,6 +2,7 @@ import Foundation
 
 public enum TaigaError: Error, LocalizedError, Sendable {
     case invalidCredentials
+    case gitHubAuthFailed(String)
     case http(status: Int)
     case decoding
     case network(underlying: Error)
@@ -11,6 +12,8 @@ public enum TaigaError: Error, LocalizedError, Sendable {
         switch self {
         case .invalidCredentials:
             return "Invalid username or password."
+        case .gitHubAuthFailed(let detail):
+            return "GitHub authentication failed: \(detail)"
         case .http(let status):
             return "Server returned HTTP \(status)."
         case .decoding:

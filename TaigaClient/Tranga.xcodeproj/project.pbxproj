@@ -7,85 +7,85 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		072E7A8F50D2EF1E3798A5E5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0AB962EC6C6E051AE16EB7 /* ContentView.swift */; };
-		830EAC86B45432DF7EEA79D1 /* TaigaUI in Frameworks */ = {isa = PBXBuildFile; productRef = AF40C9BAC47F206C91A3644D /* TaigaUI */; };
-		91824BA2B7CEF06A5C7DA73D /* TaigaCore in Frameworks */ = {isa = PBXBuildFile; productRef = 7E2C4013CAAA5AEE6CA0AD92 /* TaigaCore */; };
-		D12D42AC46E1618A462CB43D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AD7884D957C43AAFEFC9309 /* Assets.xcassets */; };
-		D34020173DCD27352A5396C3 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72310DC26B312CCE4EEC3349 /* SplashScreenView.swift */; };
-		D899CF3002D47D753F638612 /* TaigaMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AC81CB8920C13E404D655C /* TaigaMobileApp.swift */; };
+		68E8137E4BD0B8773C58CA08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB2E1A58B2A05B48435B7134 /* Assets.xcassets */; };
+		6EF143DFD806B0BFE63E1E35 /* TaigaUI in Frameworks */ = {isa = PBXBuildFile; productRef = D7492A7559CED46064D9C5F8 /* TaigaUI */; };
+		80573D80034DC8538CC2AB6B /* TaigaCore in Frameworks */ = {isa = PBXBuildFile; productRef = DD3A56F2DBA3713147215B81 /* TaigaCore */; };
+		8EDE08F2BA0DB49264926806 /* TaigaMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB664B272E0EC92257E9FB /* TaigaMobileApp.swift */; };
+		F5895F4417317797BCEF2F70 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA0AA197267F96FBCED25C /* SplashScreenView.swift */; };
+		F5E86569A41671033ACBA027 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD72FE74621652D2E7502256 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A0AB962EC6C6E051AE16EB7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		254D620E1C74D0BF6ED3CB31 /* TaigaClient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TaigaClient; path = .; sourceTree = SOURCE_ROOT; };
-		4AD7884D957C43AAFEFC9309 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		72310DC26B312CCE4EEC3349 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		9BB6EF39B9BE14A21223F5F0 /* Tranga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tranga.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA63C170BC1931A303056650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		F4AC81CB8920C13E404D655C /* TaigaMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaigaMobileApp.swift; sourceTree = "<group>"; };
+		18EA0AA197267F96FBCED25C /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		280270208B6A290AB1F7B3BF /* Tranga.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tranga.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB2E1A58B2A05B48435B7134 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BBAB664B272E0EC92257E9FB /* TaigaMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaigaMobileApp.swift; sourceTree = "<group>"; };
+		CD72FE74621652D2E7502256 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D4377578231A761ADE5D6830 /* TaigaClient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TaigaClient; path = .; sourceTree = SOURCE_ROOT; };
+		D9FE6ADAB38E6BB11D63A5F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		612BA94B91E26C9277DC6931 /* Frameworks */ = {
+		52749517765606EDCD9AFE3D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				830EAC86B45432DF7EEA79D1 /* TaigaUI in Frameworks */,
-				91824BA2B7CEF06A5C7DA73D /* TaigaCore in Frameworks */,
+				6EF143DFD806B0BFE63E1E35 /* TaigaUI in Frameworks */,
+				80573D80034DC8538CC2AB6B /* TaigaCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		137D82B14D50281846C8BE42 = {
+		5C44795AD200D1A282FC2369 = {
 			isa = PBXGroup;
 			children = (
-				FE1179D8EC60B34E9453B089 /* Packages */,
-				B945680F570B47E204F147CA /* TaigaApp */,
-				E8CA132862FC33F4F8CFD8A1 /* Products */,
+				81CC1DF59D9301ED57EF475D /* Packages */,
+				D663913A53FD76F46D8C3287 /* TaigaApp */,
+				95EAA4894A1A8FF87474A437 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B945680F570B47E204F147CA /* TaigaApp */ = {
+		81CC1DF59D9301ED57EF475D /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				4AD7884D957C43AAFEFC9309 /* Assets.xcassets */,
-				1A0AB962EC6C6E051AE16EB7 /* ContentView.swift */,
-				AA63C170BC1931A303056650 /* Info.plist */,
-				72310DC26B312CCE4EEC3349 /* SplashScreenView.swift */,
-				F4AC81CB8920C13E404D655C /* TaigaMobileApp.swift */,
+				D4377578231A761ADE5D6830 /* TaigaClient */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		95EAA4894A1A8FF87474A437 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				280270208B6A290AB1F7B3BF /* Tranga.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D663913A53FD76F46D8C3287 /* TaigaApp */ = {
+			isa = PBXGroup;
+			children = (
+				BB2E1A58B2A05B48435B7134 /* Assets.xcassets */,
+				CD72FE74621652D2E7502256 /* ContentView.swift */,
+				D9FE6ADAB38E6BB11D63A5F9 /* Info.plist */,
+				18EA0AA197267F96FBCED25C /* SplashScreenView.swift */,
+				BBAB664B272E0EC92257E9FB /* TaigaMobileApp.swift */,
 			);
 			name = TaigaApp;
 			path = Sources/TaigaApp;
 			sourceTree = "<group>";
 		};
-		E8CA132862FC33F4F8CFD8A1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9BB6EF39B9BE14A21223F5F0 /* Tranga.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		FE1179D8EC60B34E9453B089 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				254D620E1C74D0BF6ED3CB31 /* TaigaClient */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FF5C62FD42E11E887B9A584E /* Tranga */ = {
+		55FB1AC234E071A0FF855D7D /* Tranga */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B29113CB9CCF2D9783E614 /* Build configuration list for PBXNativeTarget "Tranga" */;
+			buildConfigurationList = EE6D76F683CB93EDC60CDE9A /* Build configuration list for PBXNativeTarget "Tranga" */;
 			buildPhases = (
-				D93D760A25CBEA54A860646C /* Sources */,
-				16FA2494A4F5F11646A726E4 /* Resources */,
-				612BA94B91E26C9277DC6931 /* Frameworks */,
+				9E0D2981B8F5B2D673A1DFE9 /* Sources */,
+				3998635BC2C38E70280519A4 /* Resources */,
+				52749517765606EDCD9AFE3D /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -93,75 +93,97 @@
 			);
 			name = Tranga;
 			packageProductDependencies = (
-				AF40C9BAC47F206C91A3644D /* TaigaUI */,
-				7E2C4013CAAA5AEE6CA0AD92 /* TaigaCore */,
+				D7492A7559CED46064D9C5F8 /* TaigaUI */,
+				DD3A56F2DBA3713147215B81 /* TaigaCore */,
 			);
 			productName = Tranga;
-			productReference = 9BB6EF39B9BE14A21223F5F0 /* Tranga.app */;
+			productReference = 280270208B6A290AB1F7B3BF /* Tranga.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		BAA60655F63F5E5C303DCD32 /* Project object */ = {
+		F03D8A5022B4B799C315490C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					FF5C62FD42E11E887B9A584E = {
+					55FB1AC234E071A0FF855D7D = {
+						DevelopmentTeam = U9H69CCE8H;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 93669296A2173879DEE23A4E /* Build configuration list for PBXProject "Tranga" */;
+			buildConfigurationList = 99BC8AB6996CD5A6D83A26F3 /* Build configuration list for PBXProject "Tranga" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
 				en,
 			);
-			mainGroup = 137D82B14D50281846C8BE42;
+			mainGroup = 5C44795AD200D1A282FC2369;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				9A2BC678C3D4C6003AC9EE0D /* XCLocalSwiftPackageReference "." */,
+				7608B00E1FA23A0614B37588 /* XCLocalSwiftPackageReference "." */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = E8CA132862FC33F4F8CFD8A1 /* Products */;
+			productRefGroup = 95EAA4894A1A8FF87474A437 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FF5C62FD42E11E887B9A584E /* Trango */,
+				55FB1AC234E071A0FF855D7D /* Tranga */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		16FA2494A4F5F11646A726E4 /* Resources */ = {
+		3998635BC2C38E70280519A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D12D42AC46E1618A462CB43D /* Assets.xcassets in Resources */,
+				68E8137E4BD0B8773C58CA08 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D93D760A25CBEA54A860646C /* Sources */ = {
+		9E0D2981B8F5B2D673A1DFE9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				072E7A8F50D2EF1E3798A5E5 /* ContentView.swift in Sources */,
-				D34020173DCD27352A5396C3 /* SplashScreenView.swift in Sources */,
-				D899CF3002D47D753F638612 /* TaigaMobileApp.swift in Sources */,
+				F5E86569A41671033ACBA027 /* ContentView.swift in Sources */,
+				F5895F4417317797BCEF2F70 /* SplashScreenView.swift in Sources */,
+				8EDE08F2BA0DB49264926806 /* TaigaMobileApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		680DCC2FD0D887C0ADBD43FD /* Release */ = {
+		1F8271845D0BD03568DB0F7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U9H69CCE8H;
+				INFOPLIST_FILE = Sources/TaigaApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewgonzalez.tranga;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		36E4A614ADF2708BCC3E9482 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -217,49 +239,7 @@
 			};
 			name = Release;
 		};
-		6D63DA38FB34428A35E006AE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J5872G7867;
-				INFOPLIST_FILE = Sources/TaigaApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewgonzalez.tranga;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		82671B8E6765D893B703940D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J5872G7867;
-				INFOPLIST_FILE = Sources/TaigaApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewgonzalez.tranga;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		B35E82A92ACAE1DBF9D365FF /* Debug */ = {
+		38CDFE4DF4A987350886AE81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -322,23 +302,44 @@
 			};
 			name = Debug;
 		};
+		C894750BFF9CCD2DB897F94A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U9H69CCE8H;
+				INFOPLIST_FILE = Sources/TaigaApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewgonzalez.tranga;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B29113CB9CCF2D9783E614 /* Build configuration list for PBXNativeTarget "Tranga" */ = {
+		99BC8AB6996CD5A6D83A26F3 /* Build configuration list for PBXProject "Tranga" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				82671B8E6765D893B703940D /* Debug */,
-				6D63DA38FB34428A35E006AE /* Release */,
+				38CDFE4DF4A987350886AE81 /* Debug */,
+				36E4A614ADF2708BCC3E9482 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		93669296A2173879DEE23A4E /* Build configuration list for PBXProject "Tranga" */ = {
+		EE6D76F683CB93EDC60CDE9A /* Build configuration list for PBXNativeTarget "Tranga" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B35E82A92ACAE1DBF9D365FF /* Debug */,
-				680DCC2FD0D887C0ADBD43FD /* Release */,
+				C894750BFF9CCD2DB897F94A /* Debug */,
+				1F8271845D0BD03568DB0F7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -346,22 +347,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		9A2BC678C3D4C6003AC9EE0D /* XCLocalSwiftPackageReference "." */ = {
+		7608B00E1FA23A0614B37588 /* XCLocalSwiftPackageReference "." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = .;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7E2C4013CAAA5AEE6CA0AD92 /* TaigaCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = TaigaCore;
-		};
-		AF40C9BAC47F206C91A3644D /* TaigaUI */ = {
+		D7492A7559CED46064D9C5F8 /* TaigaUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TaigaUI;
 		};
+		DD3A56F2DBA3713147215B81 /* TaigaCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TaigaCore;
+		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = BAA60655F63F5E5C303DCD32 /* Project object */;
+	rootObject = F03D8A5022B4B799C315490C /* Project object */;
 }

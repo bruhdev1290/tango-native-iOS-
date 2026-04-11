@@ -128,6 +128,11 @@ public struct TaigaAPIClient: @unchecked Sendable {
                 }
                 return token
             case 400:
+                // Try to parse error details from Taiga
+                if let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let errorDetail = dict["detail"] as? String {
+                    throw TaigaError.gitHubAuthFailed(errorDetail)
+                }
                 throw TaigaError.invalidCredentials
             default:
                 throw TaigaError.http(status: http.statusCode)

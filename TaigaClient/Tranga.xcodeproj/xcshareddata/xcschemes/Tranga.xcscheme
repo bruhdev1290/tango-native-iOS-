@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
+               BlueprintIdentifier = "55FB1AC234E071A0FF855D7D"
                BuildableName = "Tranga.app"
                BlueprintName = "Tranga"
                ReferencedContainer = "container:Tranga.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
+            BlueprintIdentifier = "55FB1AC234E071A0FF855D7D"
             BuildableName = "Tranga.app"
             BlueprintName = "Tranga"
             ReferencedContainer = "container:Tranga.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
+            BlueprintIdentifier = "55FB1AC234E071A0FF855D7D"
             BuildableName = "Tranga.app"
             BlueprintName = "Tranga"
             ReferencedContainer = "container:Tranga.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
+            BlueprintIdentifier = "55FB1AC234E071A0FF855D7D"
             BuildableName = "Tranga.app"
             BlueprintName = "Tranga"
             ReferencedContainer = "container:Tranga.xcodeproj">

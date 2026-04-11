@@ -38,7 +38,7 @@ struct SplashScreenView: View {
                     .opacity(opacity)
 
                 VStack(spacing: 12) {
-                    Text("Tango")
+                    Text("Tranga")
                         .font(.system(size: 48, weight: .bold))
                         .foregroundStyle(.white)
 
@@ -52,7 +52,7 @@ struct SplashScreenView: View {
                 Spacer()
 
                 VStack(spacing: 16) {
-                    Text("Stay organized, collaborate seamlessly, and ship faster with Tango—your personal Taiga project management companion.")
+                    Text("Stay organized, collaborate seamlessly, and ship faster with Tranga—your personal Taiga project management companion.")
                         .font(.body)
                         .foregroundStyle(.white.opacity(0.9))
                         .multilineTextAlignment(.center)

@@ -54,7 +54,7 @@ struct ContentView: View {
                     LoginView(
                         viewModel: authViewModel,
                         apiClient: apiClient,
-                        enableGitHubAuth: gitHubConfig.isEnabled,
+                        enableGitHubAuth: false,
                         onReset: {
                             await MainActor.run {
                                 authViewModel.resetSession()

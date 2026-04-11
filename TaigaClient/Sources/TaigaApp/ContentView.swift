@@ -7,6 +7,7 @@ struct ContentView: View {
     @State private var projectsViewModel: ProjectsViewModel
     private let apiClient: TaigaAPIClient
     private let itemsService: ItemsService
+    private let projectsService: ProjectsService
     private let authService: AuthService
     private let gitHubConfig: GitHubOAuthConfig
 
@@ -20,6 +21,7 @@ struct ContentView: View {
         self.apiClient = apiClient
         self.authService = authService
         self.itemsService = itemsService
+        self.projectsService = projectsService
         self.gitHubConfig = gitHubConfig
         let authVM = AuthViewModel(authService: authService, gitHubConfig: gitHubConfig)
         _authViewModel = State(initialValue: authVM)

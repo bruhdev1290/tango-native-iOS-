@@ -85,8 +85,11 @@ public struct AppSettingsView: View {
     @State private var supportDetails = ""
     @State private var includesLogs = true
     @State private var supportErrorMessage: String?
+    private let onLogout: () -> Void
 
-    public init() {}
+    public init(onLogout: @escaping () -> Void = {}) {
+        self.onLogout = onLogout
+    }
 
     public var body: some View {
         NavigationStack {
@@ -118,6 +121,21 @@ public struct AppSettingsView: View {
                         )
                     } label: {
                         Label("Support", systemImage: "envelope")
+                    }
+
+                    NavigationLink {
+                        GitHubSettingsView()
+                    } label: {
+                        Label("GitHub", systemImage: "chevron.left.forwardslash.chevron.right")
+                    }
+                }
+
+                Section("Account") {
+                    Button(role: .destructive) {
+                        dismiss()
+                        onLogout()
+                    } label: {
+                        Label("Logout", systemImage: "rectangle.portrait.and.arrow.right")
                     }
                 }
             }
@@ -152,6 +170,21 @@ public struct AppSettingsView: View {
             "- Taiga API URL: \(taigaBaseURL)",
             "- Timestamp: \(Date().formatted(date: .abbreviated, time: .standard))"
         ]
+    }
+}
+
+private struct GitHubSettingsView: View {
+    var body: some View {
+        Form {
+            Section("Repository") {
+                Link(
+                    destination: URL(string: "https://github.com/bruhdev1290/tango-native-iOS-")!
+                ) {
+                    Label("View Source Code", systemImage: "link")
+                }
+            }
+        }
+        .navigationTitle("GitHub")
     }
 }
 

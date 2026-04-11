@@ -234,7 +234,27 @@
       "inputs" : [
         {
           "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/GitHubOAuthConfig.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AttachmentUpload.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AuthToken.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/CurrentUser.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Issue.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Membership.swift"
         },
         {
           "kind" : "file",
@@ -289,7 +309,12 @@
       "moduleName" : "TaigaCore",
       "moduleOutputPath" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/Modules/TaigaCore.swiftmodule",
       "objects" : [
+        "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/GitHubOAuthConfig.swift.o",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AttachmentUpload.swift.o",
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AuthToken.swift.o",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/CurrentUser.swift.o",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Issue.swift.o",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Membership.swift.o",
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/ProjectSummary.swift.o",
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Sprint.swift.o",
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Task.swift.o",
@@ -355,7 +380,27 @@
       "outputs" : [
         {
           "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/GitHubOAuthConfig.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AttachmentUpload.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AuthToken.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/CurrentUser.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Issue.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Membership.swift.o"
         },
         {
           "kind" : "file",
@@ -404,7 +449,12 @@
       ],
       "prepareForIndexing" : false,
       "sources" : [
+        "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/GitHubOAuthConfig.swift",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AttachmentUpload.swift",
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AuthToken.swift",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/CurrentUser.swift",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Issue.swift",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Membership.swift",
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/ProjectSummary.swift",
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Sprint.swift",
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Task.swift",
@@ -533,6 +583,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/AppSettingsView.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/LoginView.swift"
         },
         {
@@ -563,6 +617,7 @@
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AuthViewModel.swift.o",
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ItemsViewModel.swift.o",
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsViewModel.swift.o",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AppSettingsView.swift.o",
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/LoginView.swift.o",
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectDetailView.swift.o",
         "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsListView.swift.o"
@@ -633,6 +688,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AppSettingsView.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/LoginView.swift.o"
         },
         {
@@ -653,6 +712,7 @@
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/AuthViewModel.swift",
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/ItemsViewModel.swift",
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/ProjectsViewModel.swift",
+        "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/AppSettingsView.swift",
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/LoginView.swift",
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/ProjectDetailView.swift",
         "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/ProjectsListView.swift"
@@ -795,7 +855,12 @@
       "-package-name",
       "taigaclient",
       "-c",
+      "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/GitHubOAuthConfig.swift",
+      "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AttachmentUpload.swift",
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AuthToken.swift",
+      "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/CurrentUser.swift",
+      "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Issue.swift",
+      "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Membership.swift",
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/ProjectSummary.swift",
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Sprint.swift",
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Task.swift",
@@ -929,6 +994,7 @@
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/AuthViewModel.swift",
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/ItemsViewModel.swift",
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/ProjectsViewModel.swift",
+      "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/AppSettingsView.swift",
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/LoginView.swift",
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/ProjectDetailView.swift",
       "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/ProjectsListView.swift",
@@ -1076,6 +1142,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AttachmentUpload.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AuthService.swift.o"
         },
         {
@@ -1084,11 +1154,27 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/CurrentUser.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/GitHubOAuthConfig.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Issue.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/ItemsService.swift.o"
         },
         {
           "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/KeychainStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Membership.swift.o"
         },
         {
           "kind" : "file",
@@ -1130,7 +1216,27 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/GitHubOAuthConfig.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AttachmentUpload.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AuthToken.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/CurrentUser.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Issue.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Membership.swift"
         },
         {
           "kind" : "file",
@@ -1224,6 +1330,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AttachmentUpload.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AuthService.swift.o"
         },
         {
@@ -1232,11 +1342,27 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/CurrentUser.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/GitHubOAuthConfig.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Issue.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/ItemsService.swift.o"
         },
         {
           "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/KeychainStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Membership.swift.o"
         },
         {
           "kind" : "file",
@@ -1261,6 +1387,10 @@
         {
           "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/UserStory.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AppSettingsView.swift.o"
         },
         {
           "kind" : "file",
@@ -1307,6 +1437,10 @@
         {
           "kind" : "file",
           "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/ViewModels/ProjectsViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/AppSettingsView.swift"
         },
         {
           "kind" : "file",

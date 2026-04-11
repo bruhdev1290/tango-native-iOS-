@@ -20,23 +20,16 @@ public struct ProjectsListView: View {
         .navigationTitle("Projects")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                HStack(spacing: 16) {
-                    Button {
-                        showsSettings = true
-                    } label: {
-                        Image(systemName: "gearshape")
-                            .font(.system(size: 18))
-                    }
-                    
-                    Button("Logout") {
-                        onLogout()
-                    }
-                    .font(.subheadline)
+                Button {
+                    showsSettings = true
+                } label: {
+                    Image(systemName: "gearshape")
+                        .font(.system(size: 18))
                 }
             }
         }
         .sheet(isPresented: $showsSettings) {
-            AppSettingsView()
+            AppSettingsView(onLogout: onLogout)
         }
     }
 
@@ -98,7 +91,8 @@ public struct ProjectsListView: View {
         myWork: [MyWorkItem],
         username: String?
     ) -> some View {
-        ScrollView(showsIndicators: false) {
+        let projectsById = Dictionary(uniqueKeysWithValues: projects.map { ($0.id, $0) })
+        return ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {
                 // Welcome
                 Text("Hello, \(username ?? "there")")
@@ -107,7 +101,7 @@ public struct ProjectsListView: View {
 
                 // My Work Section
                 if !myWork.isEmpty {
-                    myWorkSection(items: myWork)
+                    myWorkSection(items: myWork, projectsById: projectsById)
                 }
 
                 // Projects Section
@@ -127,7 +121,7 @@ public struct ProjectsListView: View {
         }
     }
 
-    private func myWorkSection(items: [MyWorkItem]) -> some View {
+    private func myWorkSection(items: [MyWorkItem], projectsById: [Int: ProjectSummary]) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("My Work")
                 .font(.headline)
@@ -144,7 +138,7 @@ public struct ProjectsListView: View {
                                 )
                             )
                         } label: {
-                            MyWorkCard(item: item)
+                            MyWorkCard(item: item, project: projectsById[item.projectId])
                         }
                         .buttonStyle(.plain)
                     }
@@ -201,6 +195,7 @@ public struct ProjectsListView: View {
 
 private struct MyWorkCard: View {
     let item: MyWorkItem
+    let project: ProjectSummary?
 
     private var iconName: String {
         switch item.kind {
@@ -218,14 +213,61 @@ private struct MyWorkCard: View {
         }
     }
 
+    private var projectColor: Color {
+        let colors: [Color] = [.blue, .green, .orange, .pink, .purple, .red, .teal, .indigo, .mint, .cyan]
+        let hash = abs(item.projectName.hashValue)
+        return colors[hash % colors.count]
+    }
+
+    private var projectInitials: String {
+        let words = item.projectName.split(separator: " ")
+        if words.count >= 2 {
+            return String(words[0].prefix(1) + words[1].prefix(1)).uppercased()
+        } else if let first = words.first {
+            return String(first.prefix(2)).uppercased()
+        }
+        return "??"
+    }
+
+    private var projectLogoURL: URL? {
+        if let small = project?.logoSmallURL, let url = URL(string: small) {
+            return url
+        }
+        if let big = project?.logoBigURL, let url = URL(string: big) {
+            return url
+        }
+        return nil
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Image(systemName: iconName)
-                    .font(.system(size: 16))
-                    .foregroundStyle(iconColor)
-                    .frame(width: 32, height: 32)
-                    .background(iconColor.opacity(0.15), in: RoundedRectangle(cornerRadius: 8))
+                Group {
+                    if let projectLogoURL {
+                        AsyncImage(url: projectLogoURL) { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            default:
+                                Text(projectInitials)
+                                    .font(.system(size: 12, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .background(projectColor)
+                            }
+                        }
+                    } else {
+                        Text(projectInitials)
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(projectColor)
+                    }
+                }
+                .frame(width: 32, height: 32)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
                 
                 Spacer()
                 
@@ -284,14 +326,45 @@ private struct CompactProjectCard: View {
         return "??"
     }
 
+    private var projectLogoURL: URL? {
+        if let small = project.logoSmallURL, let url = URL(string: small) {
+            return url
+        }
+        if let big = project.logoBigURL, let url = URL(string: big) {
+            return url
+        }
+        return nil
+    }
+
     var body: some View {
         HStack(spacing: 12) {
             // Project Icon
-            Text(initials)
-                .font(.system(size: 15, weight: .bold))
-                .foregroundStyle(.white)
-                .frame(width: 38, height: 38)
-                .background(projectColor, in: RoundedRectangle(cornerRadius: 10))
+            Group {
+                if let projectLogoURL {
+                    AsyncImage(url: projectLogoURL) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .scaledToFill()
+                        default:
+                            Text(initials)
+                                .font(.system(size: 15, weight: .bold))
+                                .foregroundStyle(.white)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .background(projectColor)
+                        }
+                    }
+                } else {
+                    Text(initials)
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(projectColor)
+                }
+            }
+            .frame(width: 38, height: 38)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(project.name)

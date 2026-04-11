@@ -30,7 +30,8 @@ The public Taiga web front end is `https://tree.taiga.io/`, but its API is serve
 ### What’s new (persistence + backlog endpoints)
 - Auth token is stored in the iOS Keychain and restored on app launch; call `AuthService.logout()` to clear it.
 - New models and API wrappers for user stories, tasks, and sprints (milestones) filtered by project.
-- Basic backlog UI: projects list navigates to a backlog screen showing sprints, user stories, and tasks. Toolbar includes Logout.
+- Basic backlog UI: projects list navigates to a backlog screen showing sprints, user stories, and tasks.
+- Settings now includes an `Account` section with `Logout` and a `GitHub` submenu linking to the project repository: `https://github.com/bruhdev1290/tango-native-iOS-`.
 - Token refresh scaffolded: `AuthService.authenticatedToken()` will refresh using `POST /api/v1/auth/refresh` when an `expires` value is close. citeturn0search0
 
 ### Next steps

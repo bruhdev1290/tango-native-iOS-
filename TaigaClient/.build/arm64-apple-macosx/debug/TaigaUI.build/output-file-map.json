@@ -23,6 +23,13 @@
     "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsViewModel.swiftdeps",
     "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/ProjectsViewModel.dia"
   },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/AppSettingsView.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AppSettingsView.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AppSettingsView.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AppSettingsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AppSettingsView.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/AppSettingsView.dia"
+  },
   "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaUI/Views/LoginView.swift": {
     "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/LoginView.d",
     "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaUI.build/LoginView.swift.o",

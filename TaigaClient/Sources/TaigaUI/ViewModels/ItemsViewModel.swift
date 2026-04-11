@@ -105,6 +105,11 @@ public final class ItemsViewModel {
         description: String?,
         tags: [String],
         assigneeMention: String?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?,
+        points: [String: Int]?,
         attachments: [AttachmentUpload]
     ) async throws {
         let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -118,6 +123,11 @@ public final class ItemsViewModel {
             description: normalizedDescription,
             tags: tags,
             assignedTo: resolvedAssignee,
+            dueDate: dueDate,
+            dueDateReason: dueDateReason,
+            isBlocked: isBlocked,
+            blockedNote: blockedNote,
+            points: points,
             attachments: attachments,
             token: token
         )
@@ -125,32 +135,92 @@ public final class ItemsViewModel {
     }
 
     @MainActor
-    public func createTask(subject: String, userStoryId: Int?, assigneeMention: String?) async throws {
+    public func createTask(
+        subject: String,
+        userStoryId: Int?,
+        assigneeMention: String?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?
+    ) async throws {
         let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !normalized.isEmpty else { return }
         let token = try await authService.authenticatedToken()
         let resolvedAssignee = try await resolveAssigneeId(from: assigneeMention, token: token)
-        _ = try await itemsService.createTask(projectId: projectId, subject: normalized, userStoryId: userStoryId, assignedTo: resolvedAssignee, token: token)
+        _ = try await itemsService.createTask(
+            projectId: projectId,
+            subject: normalized,
+            userStoryId: userStoryId,
+            assignedTo: resolvedAssignee,
+            dueDate: dueDate,
+            dueDateReason: dueDateReason,
+            isBlocked: isBlocked,
+            blockedNote: blockedNote,
+            token: token
+        )
         await load()
     }
 
     @MainActor
-    public func updateStory(id: Int, subject: String, status: Int?, assignedTo: Int?, assigneeMention: String?) async throws {
+    public func updateStory(
+        id: Int,
+        subject: String,
+        status: Int?,
+        assignedTo: Int?,
+        assigneeMention: String?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?,
+        points: [String: Int]?
+    ) async throws {
         let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !normalized.isEmpty else { return }
         let token = try await authService.authenticatedToken()
         let resolvedAssignee = try await resolveAssigneeId(from: assigneeMention, token: token) ?? assignedTo
-        _ = try await itemsService.updateUserStory(id: id, subject: normalized, status: status, assignedTo: resolvedAssignee, token: token)
+        _ = try await itemsService.updateUserStory(
+            id: id,
+            subject: normalized,
+            status: status,
+            assignedTo: resolvedAssignee,
+            dueDate: dueDate,
+            dueDateReason: dueDateReason,
+            isBlocked: isBlocked,
+            blockedNote: blockedNote,
+            points: points,
+            token: token
+        )
         await load()
     }
 
     @MainActor
-    public func updateTask(id: Int, subject: String, status: Int?, assignedTo: Int?, assigneeMention: String?) async throws {
+    public func updateTask(
+        id: Int,
+        subject: String,
+        status: Int?,
+        assignedTo: Int?,
+        assigneeMention: String?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?
+    ) async throws {
         let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !normalized.isEmpty else { return }
         let token = try await authService.authenticatedToken()
         let resolvedAssignee = try await resolveAssigneeId(from: assigneeMention, token: token) ?? assignedTo
-        _ = try await itemsService.updateTask(id: id, subject: normalized, status: status, assignedTo: resolvedAssignee, token: token)
+        _ = try await itemsService.updateTask(
+            id: id,
+            subject: normalized,
+            status: status,
+            assignedTo: resolvedAssignee,
+            dueDate: dueDate,
+            dueDateReason: dueDateReason,
+            isBlocked: isBlocked,
+            blockedNote: blockedNote,
+            token: token
+        )
         await load()
     }
 
@@ -163,6 +233,10 @@ public final class ItemsViewModel {
         priority: Int?,
         issueType: Int?,
         assigneeMention: String?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?,
         attachments: [AttachmentUpload]
     ) async throws {
         let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -179,6 +253,10 @@ public final class ItemsViewModel {
             priority: priority,
             issueType: issueType,
             assignedTo: resolvedAssignee,
+            dueDate: dueDate,
+            dueDateReason: dueDateReason,
+            isBlocked: isBlocked,
+            blockedNote: blockedNote,
             attachments: attachments,
             token: token
         )
@@ -186,12 +264,32 @@ public final class ItemsViewModel {
     }
 
     @MainActor
-    public func updateIssue(id: Int, subject: String, status: Int?, assignedTo: Int?, assigneeMention: String?) async throws {
+    public func updateIssue(
+        id: Int,
+        subject: String,
+        status: Int?,
+        assignedTo: Int?,
+        assigneeMention: String?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?
+    ) async throws {
         let normalized = subject.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !normalized.isEmpty else { return }
         let token = try await authService.authenticatedToken()
         let resolvedAssignee = try await resolveAssigneeId(from: assigneeMention, token: token) ?? assignedTo
-        _ = try await itemsService.updateIssue(id: id, subject: normalized, status: status, assignedTo: resolvedAssignee, token: token)
+        _ = try await itemsService.updateIssue(
+            id: id,
+            subject: normalized,
+            status: status,
+            assignedTo: resolvedAssignee,
+            dueDate: dueDate,
+            dueDateReason: dueDateReason,
+            isBlocked: isBlocked,
+            blockedNote: blockedNote,
+            token: token
+        )
         await load()
     }
 

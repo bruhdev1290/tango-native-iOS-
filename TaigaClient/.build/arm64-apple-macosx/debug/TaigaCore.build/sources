@@ -1,4 +1,9 @@
+/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/GitHubOAuthConfig.swift
+/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AttachmentUpload.swift
 /Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AuthToken.swift
+/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/CurrentUser.swift
+/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Issue.swift
+/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Membership.swift
 /Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/ProjectSummary.swift
 /Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Sprint.swift
 /Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Task.swift

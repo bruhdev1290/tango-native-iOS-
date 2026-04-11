@@ -217,12 +217,18 @@ public struct TaigaAPIClient: @unchecked Sendable {
         description: String?,
         tags: [String],
         assignedTo: Int?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?,
+        points: [String: Int]?,
         attachments: [AttachmentUpload],
         token: AuthToken
     ) async throws -> UserStory {
         var body: [String: Any] = [
             "project": projectId,
-            "subject": subject
+            "subject": subject,
+            "is_blocked": isBlocked
         ]
         if let description, !description.isEmpty {
             body["description"] = description
@@ -232,6 +238,18 @@ public struct TaigaAPIClient: @unchecked Sendable {
         }
         if let assignedTo {
             body["assigned_to"] = assignedTo
+        }
+        if let dueDate {
+            body["due_date"] = dueDate
+        }
+        if let dueDateReason, !dueDateReason.isEmpty {
+            body["due_date_reason"] = dueDateReason
+        }
+        if let blockedNote, !blockedNote.isEmpty {
+            body["blocked_note"] = blockedNote
+        }
+        if let points {
+            body["points"] = points
         }
         let story: UserStory = try await authorizedRequest(path: "userstories", method: "POST", body: body, token: token)
         for attachment in attachments {
@@ -246,30 +264,64 @@ public struct TaigaAPIClient: @unchecked Sendable {
         return story
     }
 
-    public func updateUserStory(id: Int, subject: String, status: Int?, assignedTo: Int?, token: AuthToken) async throws -> UserStory {
-        var body: [String: Any] = ["subject": subject]
+    public func updateUserStory(
+        id: Int,
+        subject: String,
+        status: Int?,
+        assignedTo: Int?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?,
+        points: [String: Int]?,
+        token: AuthToken
+    ) async throws -> UserStory {
+        var body: [String: Any] = ["subject": subject, "is_blocked": isBlocked]
         body["status"] = status as Any
         body["assigned_to"] = assignedTo as Any
+        if let dueDate {
+            body["due_date"] = dueDate
+        }
+        if let dueDateReason, !dueDateReason.isEmpty {
+            body["due_date_reason"] = dueDateReason
+        }
+        if let blockedNote, !blockedNote.isEmpty {
+            body["blocked_note"] = blockedNote
+        }
+        if let points {
+            body["points"] = points
+        }
         return try await authorizedRequest(path: "userstories/\(id)", method: "PATCH", body: body, token: token)
     }
 
-    public func createTask(projectId: Int, subject: String, userStoryId: Int?, token: AuthToken) async throws -> Task {
+    public func createTask(
+        projectId: Int,
+        subject: String,
+        userStoryId: Int?,
+        assignedTo: Int?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?,
+        token: AuthToken
+    ) async throws -> Task {
         var body: [String: Any] = [
             "project": projectId,
-            "subject": subject
-        ]
-        body["user_story"] = userStoryId as Any
-        return try await authorizedRequest(path: "tasks", method: "POST", body: body, token: token)
-    }
-
-    public func createTask(projectId: Int, subject: String, userStoryId: Int?, assignedTo: Int?, token: AuthToken) async throws -> Task {
-        var body: [String: Any] = [
-            "project": projectId,
-            "subject": subject
+            "subject": subject,
+            "is_blocked": isBlocked
         ]
         body["user_story"] = userStoryId as Any
         if let assignedTo {
             body["assigned_to"] = assignedTo
+        }
+        if let dueDate {
+            body["due_date"] = dueDate
+        }
+        if let dueDateReason, !dueDateReason.isEmpty {
+            body["due_date_reason"] = dueDateReason
+        }
+        if let blockedNote, !blockedNote.isEmpty {
+            body["blocked_note"] = blockedNote
         }
         return try await authorizedRequest(path: "tasks", method: "POST", body: body, token: token)
     }
@@ -283,12 +335,17 @@ public struct TaigaAPIClient: @unchecked Sendable {
         priority: Int?,
         issueType: Int?,
         assignedTo: Int?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?,
         attachments: [AttachmentUpload],
         token: AuthToken
     ) async throws -> Issue {
         var body: [String: Any] = [
             "project": projectId,
-            "subject": subject
+            "subject": subject,
+            "is_blocked": isBlocked
         ]
         if let description, !description.isEmpty {
             body["description"] = description
@@ -308,6 +365,15 @@ public struct TaigaAPIClient: @unchecked Sendable {
         if let assignedTo {
             body["assigned_to"] = assignedTo
         }
+        if let dueDate {
+            body["due_date"] = dueDate
+        }
+        if let dueDateReason, !dueDateReason.isEmpty {
+            body["due_date_reason"] = dueDateReason
+        }
+        if let blockedNote, !blockedNote.isEmpty {
+            body["blocked_note"] = blockedNote
+        }
         let issue: Issue = try await authorizedRequest(path: "issues", method: "POST", body: body, token: token)
         for attachment in attachments {
             try await uploadAttachment(
@@ -321,17 +387,55 @@ public struct TaigaAPIClient: @unchecked Sendable {
         return issue
     }
 
-    public func updateTask(id: Int, subject: String, status: Int?, assignedTo: Int?, token: AuthToken) async throws -> Task {
-        var body: [String: Any] = ["subject": subject]
+    public func updateTask(
+        id: Int,
+        subject: String,
+        status: Int?,
+        assignedTo: Int?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?,
+        token: AuthToken
+    ) async throws -> Task {
+        var body: [String: Any] = ["subject": subject, "is_blocked": isBlocked]
         body["status"] = status as Any
         body["assigned_to"] = assignedTo as Any
+        if let dueDate {
+            body["due_date"] = dueDate
+        }
+        if let dueDateReason, !dueDateReason.isEmpty {
+            body["due_date_reason"] = dueDateReason
+        }
+        if let blockedNote, !blockedNote.isEmpty {
+            body["blocked_note"] = blockedNote
+        }
         return try await authorizedRequest(path: "tasks/\(id)", method: "PATCH", body: body, token: token)
     }
 
-    public func updateIssue(id: Int, subject: String, status: Int?, assignedTo: Int?, token: AuthToken) async throws -> Issue {
-        var body: [String: Any] = ["subject": subject]
+    public func updateIssue(
+        id: Int,
+        subject: String,
+        status: Int?,
+        assignedTo: Int?,
+        dueDate: String?,
+        dueDateReason: String?,
+        isBlocked: Bool,
+        blockedNote: String?,
+        token: AuthToken
+    ) async throws -> Issue {
+        var body: [String: Any] = ["subject": subject, "is_blocked": isBlocked]
         body["status"] = status as Any
         body["assigned_to"] = assignedTo as Any
+        if let dueDate {
+            body["due_date"] = dueDate
+        }
+        if let dueDateReason, !dueDateReason.isEmpty {
+            body["due_date_reason"] = dueDateReason
+        }
+        if let blockedNote, !blockedNote.isEmpty {
+            body["blocked_note"] = blockedNote
+        }
         return try await authorizedRequest(path: "issues/\(id)", method: "PATCH", body: body, token: token)
     }
 

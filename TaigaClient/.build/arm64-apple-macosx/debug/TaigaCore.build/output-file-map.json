@@ -2,12 +2,47 @@
   "": {
     "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/primary.swiftdeps"
   },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/GitHubOAuthConfig.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/GitHubOAuthConfig.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/GitHubOAuthConfig.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/GitHubOAuthConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/GitHubOAuthConfig.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/GitHubOAuthConfig.dia"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AttachmentUpload.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AttachmentUpload.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AttachmentUpload.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AttachmentUpload~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AttachmentUpload.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AttachmentUpload.dia"
+  },
   "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/AuthToken.swift": {
     "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AuthToken.d",
     "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AuthToken.swift.o",
     "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AuthToken~partial.swiftmodule",
     "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AuthToken.swiftdeps",
     "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/AuthToken.dia"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/CurrentUser.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/CurrentUser.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/CurrentUser.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/CurrentUser~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/CurrentUser.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/CurrentUser.dia"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Issue.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Issue.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Issue.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Issue~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Issue.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Issue.dia"
+  },
+  "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/Membership.swift": {
+    "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Membership.d",
+    "object": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Membership.swift.o",
+    "swiftmodule": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Membership~partial.swiftmodule",
+    "swift-dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Membership.swiftdeps",
+    "diagnostics": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/Membership.dia"
   },
   "/Users/andrew/tango-native-iOS-/TaigaClient/Sources/TaigaCore/Models/ProjectSummary.swift": {
     "dependencies": "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/ProjectSummary.d",

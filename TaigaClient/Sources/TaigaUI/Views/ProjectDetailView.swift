@@ -8,6 +8,11 @@ fileprivate struct BacklogDraft {
     let description: String?
     let tags: [String]
     let assigneeMention: String?
+    let dueDate: String?
+    let dueDateReason: String?
+    let isBlocked: Bool
+    let blockedNote: String?
+    let points: [String: Int]?
     let attachments: [AttachmentUpload]
     let status: Int?
     let assignee: Int?
@@ -146,6 +151,11 @@ public struct ProjectDetailView: View {
                             description: draft.description,
                             tags: draft.tags,
                             assigneeMention: draft.assigneeMention,
+                            dueDate: draft.dueDate,
+                            dueDateReason: draft.dueDateReason,
+                            isBlocked: draft.isBlocked,
+                            blockedNote: draft.blockedNote,
+                            points: draft.points,
                             attachments: draft.attachments
                         )
                     }
@@ -163,7 +173,11 @@ public struct ProjectDetailView: View {
                         try await viewModel.createTask(
                             subject: draft.subject,
                             userStoryId: draft.userStoryId,
-                            assigneeMention: draft.assigneeMention
+                            assigneeMention: draft.assigneeMention,
+                            dueDate: draft.dueDate,
+                            dueDateReason: draft.dueDateReason,
+                            isBlocked: draft.isBlocked,
+                            blockedNote: draft.blockedNote
                         )
                     }
                 )
@@ -185,6 +199,10 @@ public struct ProjectDetailView: View {
                             priority: draft.issuePriority,
                             issueType: draft.issueType,
                             assigneeMention: draft.assigneeMention,
+                            dueDate: draft.dueDate,
+                            dueDateReason: draft.dueDateReason,
+                            isBlocked: draft.isBlocked,
+                            blockedNote: draft.blockedNote,
                             attachments: draft.attachments
                         )
                     }
@@ -204,7 +222,12 @@ public struct ProjectDetailView: View {
                             subject: draft.subject,
                             status: draft.status,
                             assignedTo: draft.assignee,
-                            assigneeMention: draft.assigneeMention
+                            assigneeMention: draft.assigneeMention,
+                            dueDate: draft.dueDate,
+                            dueDateReason: draft.dueDateReason,
+                            isBlocked: draft.isBlocked,
+                            blockedNote: draft.blockedNote,
+                            points: draft.points
                         )
                     }
                 )
@@ -223,7 +246,11 @@ public struct ProjectDetailView: View {
                             subject: draft.subject,
                             status: draft.status,
                             assignedTo: draft.assignee,
-                            assigneeMention: draft.assigneeMention
+                            assigneeMention: draft.assigneeMention,
+                            dueDate: draft.dueDate,
+                            dueDateReason: draft.dueDateReason,
+                            isBlocked: draft.isBlocked,
+                            blockedNote: draft.blockedNote
                         )
                     }
                 )
@@ -242,7 +269,11 @@ public struct ProjectDetailView: View {
                             subject: draft.subject,
                             status: draft.status,
                             assignedTo: draft.assignee,
-                            assigneeMention: draft.assigneeMention
+                            assigneeMention: draft.assigneeMention,
+                            dueDate: draft.dueDate,
+                            dueDateReason: draft.dueDateReason,
+                            isBlocked: draft.isBlocked,
+                            blockedNote: draft.blockedNote
                         )
                     }
                 )
@@ -289,6 +320,9 @@ public struct ProjectDetailView: View {
                                 HStack(spacing: 12) {
                                     if let status = story.status { badge("Status #\(status)") }
                                     if let assigned = story.assignedTo { badge("Assignee #\(assigned)") }
+                                    if let dueDate = story.dueDate { badge("Due \(dueDate)") }
+                                    if story.isBlocked == true { badge("Blocked") }
+                                    if let points = story.points, !points.isEmpty { badge("Points \(points.count)") }
                                 }
                             }
                             .swipeActions {
@@ -306,6 +340,8 @@ public struct ProjectDetailView: View {
                                 HStack(spacing: 12) {
                                     if let status = task.status { badge("Status #\(status)") }
                                     if let assigned = task.assignedTo { badge("Assignee #\(assigned)") }
+                                    if let dueDate = task.dueDate { badge("Due \(dueDate)") }
+                                    if task.isBlocked == true { badge("Blocked") }
                                 }
                             }
                             .swipeActions {
@@ -324,6 +360,8 @@ public struct ProjectDetailView: View {
                                 HStack(spacing: 12) {
                                     if let status = issue.status { badge("Status #\(status)") }
                                     if let assigned = issue.assignedTo { badge("Assignee #\(assigned)") }
+                                    if let dueDate = issue.dueDate { badge("Due \(dueDate)") }
+                                    if issue.isBlocked == true { badge("Blocked") }
                                 }
                             }
                             .swipeActions {
@@ -441,6 +479,7 @@ public struct ProjectDetailView: View {
         guard case .loaded(let stories, let tasks, let issues, _) = viewModel.state else { return [] }
         return availableAssignees(stories: stories, tasks: tasks, issues: issues)
     }
+
 }
 
 private struct BacklogItemEditor: View {
@@ -470,6 +509,12 @@ private struct BacklogItemEditor: View {
     @State private var issueSeverityText: String = ""
     @State private var issuePriorityText: String = ""
     @State private var assigneeMentionText: String = ""
+    @State private var dueDateEnabled = false
+    @State private var dueDate = Date()
+    @State private var dueDateReasonText: String = ""
+    @State private var isBlocked = false
+    @State private var blockedNoteText: String = ""
+    @State private var pointsText: String = ""
     @State private var selectedAttachments: [PickedAttachment] = []
     @State private var showsFileImporter = false
     @State private var status: Int?
@@ -497,6 +542,32 @@ private struct BacklogItemEditor: View {
                     if showsUserStoryInput {
                         TextField("User Story ID (optional)", text: $userStoryIdText)
                             .keyboardType(.numberPad)
+                    }
+                }
+
+                Section("Scheduling") {
+                    Toggle("Set due date", isOn: $dueDateEnabled)
+                    if dueDateEnabled {
+                        DatePicker("Due date", selection: $dueDate, displayedComponents: .date)
+                        TextField("Due date reason", text: $dueDateReasonText, axis: .vertical)
+                            .lineLimit(2...4)
+                    }
+                }
+
+                Section("Blocking") {
+                    Toggle("Blocked", isOn: $isBlocked)
+                    TextField("Blocked note", text: $blockedNoteText, axis: .vertical)
+                        .lineLimit(2...4)
+                }
+
+                if showsStoryPointsInput {
+                    Section("Story Points") {
+                        TextEditor(text: $pointsText)
+                            .frame(minHeight: 120)
+                            .font(.system(.body, design: .monospaced))
+                        Text("JSON dictionary keyed by role id, for example {\"3\": 2}.")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
                     }
                 }
 
@@ -650,12 +721,71 @@ private struct BacklogItemEditor: View {
         }
     }
 
+    private var showsStoryPointsInput: Bool {
+        switch mode {
+        case .createStory, .editStory:
+            return true
+        default:
+            return false
+        }
+    }
+
     private var supportsMentionAssignment: Bool {
         true
     }
 
     private var resolvedMentionSuggestions: [ItemsViewModel.MentionCandidate] {
         mentionSuggestions(assigneeMentionText)
+    }
+
+    private static let dueDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+
+    private func parseDueDate(from rawValue: String?) -> Date? {
+        guard let rawValue, !rawValue.isEmpty else { return nil }
+        return Self.dueDateFormatter.date(from: rawValue)
+    }
+
+    private func formatDueDate(_ date: Date) -> String {
+        Self.dueDateFormatter.string(from: date)
+    }
+
+    private func parsePoints(from rawValue: String) throws -> [String: Int]? {
+        let trimmed = rawValue.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+
+        guard let data = trimmed.data(using: .utf8) else {
+            throw ValidationError(message: "Story points must be valid JSON.")
+        }
+
+        let object = try JSONSerialization.jsonObject(with: data, options: [])
+        guard let dictionary = object as? [String: Any] else {
+            throw ValidationError(message: "Story points must be a JSON object.")
+        }
+
+        var points: [String: Int] = [:]
+        for (key, value) in dictionary {
+            if let integer = value as? Int {
+                points[key] = integer
+            } else if let number = value as? NSNumber {
+                points[key] = number.intValue
+            } else {
+                throw ValidationError(message: "Story points values must be numbers.")
+            }
+        }
+
+        return points
+    }
+
+    private struct ValidationError: LocalizedError {
+        let message: String
+        var errorDescription: String? { message }
     }
 
     private var showsStatusOrAssignee: Bool {
@@ -668,6 +798,13 @@ private struct BacklogItemEditor: View {
     }
 
     private func seedValuesIfNeeded() {
+        dueDateEnabled = false
+        dueDate = Date()
+        dueDateReasonText = ""
+        isBlocked = false
+        blockedNoteText = ""
+        pointsText = ""
+
         switch mode {
         case .editStory(let story):
             subject = story.subject
@@ -676,6 +813,16 @@ private struct BacklogItemEditor: View {
             if let assigned = story.assignedTo {
                 assigneeMentionText = "@\(assigned)"
             }
+            dueDateEnabled = story.dueDate != nil
+            dueDate = parseDueDate(from: story.dueDate) ?? Date()
+            dueDateReasonText = story.dueDateReason ?? ""
+            isBlocked = story.isBlocked ?? false
+            blockedNoteText = story.blockedNote ?? ""
+            if let points = story.points,
+               let data = try? JSONSerialization.data(withJSONObject: points, options: [.prettyPrinted, .sortedKeys]),
+               let json = String(data: data, encoding: .utf8) {
+                pointsText = json
+            }
         case .editTask(let task):
             subject = task.subject
             status = task.status
@@ -683,6 +830,11 @@ private struct BacklogItemEditor: View {
             if let assigned = task.assignedTo {
                 assigneeMentionText = "@\(assigned)"
             }
+            dueDateEnabled = task.dueDate != nil
+            dueDate = parseDueDate(from: task.dueDate) ?? Date()
+            dueDateReasonText = task.dueDateReason ?? ""
+            isBlocked = task.isBlocked ?? false
+            blockedNoteText = task.blockedNote ?? ""
         case .editIssue(let issue):
             subject = issue.subject
             status = issue.status
@@ -690,6 +842,11 @@ private struct BacklogItemEditor: View {
             if let assigned = issue.assignedTo {
                 assigneeMentionText = "@\(assigned)"
             }
+            dueDateEnabled = issue.dueDate != nil
+            dueDate = parseDueDate(from: issue.dueDate) ?? Date()
+            dueDateReasonText = issue.dueDateReason ?? ""
+            isBlocked = issue.isBlocked ?? false
+            blockedNoteText = issue.blockedNote ?? ""
         default:
             break
         }
@@ -796,10 +953,19 @@ private struct BacklogItemEditor: View {
             }
         }
 
+        if isBlocked && blockedNoteText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            validationError = "Blocked items must include a reason."
+            return
+        }
+
         do {
             let normalizedDescription = descriptionText.trimmingCharacters(in: .whitespacesAndNewlines)
             let uploads = try attachmentUploads()
             let normalizedMention = assigneeMentionText.trimmingCharacters(in: .whitespacesAndNewlines)
+            let normalizedDueDate = dueDateEnabled ? formatDueDate(dueDate) : nil
+            let normalizedDueDateReason = dueDateReasonText.trimmingCharacters(in: .whitespacesAndNewlines)
+            let normalizedBlockedNote = blockedNoteText.trimmingCharacters(in: .whitespacesAndNewlines)
+            let normalizedPoints = try parsePoints(from: pointsText)
             try await onSubmit(
                 .init(
                     subject: normalizedSubject,
@@ -807,6 +973,11 @@ private struct BacklogItemEditor: View {
                     description: normalizedDescription.isEmpty ? nil : normalizedDescription,
                     tags: parsedTags(),
                     assigneeMention: normalizedMention.isEmpty ? nil : normalizedMention,
+                    dueDate: normalizedDueDate,
+                    dueDateReason: normalizedDueDateReason.isEmpty ? nil : normalizedDueDateReason,
+                    isBlocked: isBlocked,
+                    blockedNote: normalizedBlockedNote.isEmpty ? nil : normalizedBlockedNote,
+                    points: normalizedPoints,
                     attachments: uploads,
                     status: status,
                     assignee: assignee,

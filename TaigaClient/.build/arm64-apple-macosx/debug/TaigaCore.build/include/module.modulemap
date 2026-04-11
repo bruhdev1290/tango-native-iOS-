@@ -1,3 +1,0 @@
-module TaigaCore {
-    header "/Users/andrew/tango-native-iOS-/TaigaClient/.build/arm64-apple-macosx/debug/TaigaCore.build/include/TaigaCore-Swift.h"
-}

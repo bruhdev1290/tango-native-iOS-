@@ -1,0 +1,42 @@
+# Xcode
+.DS_Store
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+*.app.zip
+
+# Swift Package Manager
+.build/
+.swiftpm/
+*.xcodeproj/project.xcworkspace/
+Package.resolved
+
+# xcov
+xcov_report/
+*.xcovreport
+
+# Misc
+*.plist~
+*.plist.bak
+.idea
+.vscode
+.env
+.env.local
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Xcode Enterprise Objects
+*.moved-aside
+
+# Accio dependency management
+Dependencies/
+.accio/

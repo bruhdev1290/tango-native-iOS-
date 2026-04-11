@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AC34D47550EEF7CF07591ADC"
-               BuildableName = "TaigaiOS.app"
-               BlueprintName = "TaigaiOS"
-               ReferencedContainer = "container:TaigaiOS.xcodeproj">
+               BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
+               BuildableName = "Tango.app"
+               BlueprintName = "Tango"
+               ReferencedContainer = "container:Tango.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AC34D47550EEF7CF07591ADC"
-            BuildableName = "TaigaiOS.app"
-            BlueprintName = "TaigaiOS"
-            ReferencedContainer = "container:TaigaiOS.xcodeproj">
+            BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
+            BuildableName = "Tango.app"
+            BlueprintName = "Tango"
+            ReferencedContainer = "container:Tango.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AC34D47550EEF7CF07591ADC"
-            BuildableName = "TaigaiOS.app"
-            BlueprintName = "TaigaiOS"
-            ReferencedContainer = "container:TaigaiOS.xcodeproj">
+            BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
+            BuildableName = "Tango.app"
+            BlueprintName = "Tango"
+            ReferencedContainer = "container:Tango.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AC34D47550EEF7CF07591ADC"
-            BuildableName = "TaigaiOS.app"
-            BlueprintName = "TaigaiOS"
-            ReferencedContainer = "container:TaigaiOS.xcodeproj">
+            BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
+            BuildableName = "Tango.app"
+            BlueprintName = "Tango"
+            ReferencedContainer = "container:Tango.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -5,6 +5,7 @@ import TaigaUI
 struct ContentView: View {
     @State private var authViewModel: AuthViewModel
     @State private var projectsViewModel: ProjectsViewModel
+    @State private var showsSplash = false
     private let apiClient: TaigaAPIClient
     private let itemsService: ItemsService
     private let projectsService: ProjectsService
@@ -29,33 +30,48 @@ struct ContentView: View {
             projectsService: projectsService,
             authService: authService
         ))
+        
+        let hasSeenSplash = UserDefaults.standard.bool(forKey: "has-seen-splash-screen")
+        _showsSplash = State(initialValue: !hasSeenSplash)
     }
 
     var body: some View {
-        NavigationStack {
-            switch authViewModel.state {
-            case .authenticated:
-                ProjectsListView(
-                    viewModel: projectsViewModel,
-                    itemsService: itemsService,
-                    authService: authService,
-                    onLogout: {
-                        Swift.Task { @MainActor in
-                            authViewModel.logout()
+        ZStack {
+            NavigationStack {
+                switch authViewModel.state {
+                case .authenticated:
+                    ProjectsListView(
+                        viewModel: projectsViewModel,
+                        itemsService: itemsService,
+                        authService: authService,
+                        onLogout: {
+                            Swift.Task { @MainActor in
+                                authViewModel.logout()
+                            }
                         }
-                    }
-                )
-            default:
-                LoginView(
-                    viewModel: authViewModel,
-                    apiClient: apiClient,
-                    enableGitHubAuth: gitHubConfig.isEnabled,
-                    onReset: {
-                        await MainActor.run {
-                            authViewModel.resetSession()
+                    )
+                default:
+                    LoginView(
+                        viewModel: authViewModel,
+                        apiClient: apiClient,
+                        enableGitHubAuth: gitHubConfig.isEnabled,
+                        onReset: {
+                            await MainActor.run {
+                                authViewModel.resetSession()
+                            }
                         }
+                    )
+                }
+            }
+
+            if showsSplash {
+                SplashScreenView {
+                    UserDefaults.standard.set(true, forKey: "has-seen-splash-screen")
+                    withAnimation(.easeInOut(duration: 0.4)) {
+                        showsSplash = false
                     }
-                )
+                }
+                .transition(AnyTransition.opacity)
             }
         }
     }

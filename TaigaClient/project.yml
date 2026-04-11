@@ -1,4 +1,4 @@
-name: TaigaiOS
+name: Tango
 options:
   bundleIdPrefix: com.andrewgonzalez
 settings:
@@ -9,12 +9,14 @@ packages:
   TaigaClient:
     path: .
 targets:
-  TaigaiOS:
+  Tango:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
     sources:
       - Sources/TaigaApp
+    resources:
+      - Sources/TaigaApp/Assets.xcassets
     info:
       path: Sources/TaigaApp/Info.plist
       properties:
@@ -32,7 +34,7 @@ targets:
         UILaunchScreen: {}
         # GitHub OAuth URL Scheme
         CFBundleURLTypes:
-          - CFBundleURLName: com.andrewgonzalez.taigaios
+          - CFBundleURLName: com.andrewgonzalez.tango
             CFBundleURLSchemes:
               - taiga
     dependencies:
@@ -42,15 +44,16 @@ targets:
         product: TaigaCore
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.andrewgonzalez.taigaios
+        PRODUCT_BUNDLE_IDENTIFIER: com.andrewgonzalez.tango
         DEVELOPMENT_TEAM: U9H69CCE8H
         CODE_SIGN_STYLE: Automatic
         CURRENT_PROJECT_VERSION: 1
         MARKETING_VERSION: 1.0
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 schemes:
-  TaigaiOS:
+  Tango:
     build:
       targets:
-        TaigaiOS: all
+        Tango: all
     run:
       config: Debug

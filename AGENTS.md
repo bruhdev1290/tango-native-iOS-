@@ -114,7 +114,7 @@ swift build -Xswiftc -sdk -Xswiftc $(xcrun --sdk iphonesimulator --show-sdk-path
 xcodegen generate
 
 # Open in Xcode
-open TaigaiOS.xcodeproj
+open Tango.xcodeproj
 ```
 
 ### Running the App
@@ -215,7 +215,7 @@ Authorization: Bearer {auth_token}
 
 ### project.yml
 - XcodeGen configuration for generating `.xcodeproj`
-- Bundle ID: `com.andrewgonzalez.taigaiOS`
+- Bundle ID: `com.andrewgonzalez.tango`
 - Team ID: `U9H69CCE8H`
 - Supports portrait and landscape orientations
 - Registers "taiga" URL scheme for OAuth callbacks

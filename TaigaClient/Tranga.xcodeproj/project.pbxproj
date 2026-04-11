@@ -20,7 +20,7 @@
 		254D620E1C74D0BF6ED3CB31 /* TaigaClient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TaigaClient; path = .; sourceTree = SOURCE_ROOT; };
 		4AD7884D957C43AAFEFC9309 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72310DC26B312CCE4EEC3349 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		9BB6EF39B9BE14A21223F5F0 /* Tango.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tango.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BB6EF39B9BE14A21223F5F0 /* Tranga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tranga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA63C170BC1931A303056650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F4AC81CB8920C13E404D655C /* TaigaMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaigaMobileApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,7 +63,7 @@
 		E8CA132862FC33F4F8CFD8A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9BB6EF39B9BE14A21223F5F0 /* Tango.app */,
+				9BB6EF39B9BE14A21223F5F0 /* Tranga.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,9 +79,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FF5C62FD42E11E887B9A584E /* Tango */ = {
+		FF5C62FD42E11E887B9A584E /* Tranga */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B29113CB9CCF2D9783E614 /* Build configuration list for PBXNativeTarget "Tango" */;
+			buildConfigurationList = 58B29113CB9CCF2D9783E614 /* Build configuration list for PBXNativeTarget "Tranga" */;
 			buildPhases = (
 				D93D760A25CBEA54A860646C /* Sources */,
 				16FA2494A4F5F11646A726E4 /* Resources */,
@@ -91,13 +91,13 @@
 			);
 			dependencies = (
 			);
-			name = Tango;
+			name = Tranga;
 			packageProductDependencies = (
 				AF40C9BAC47F206C91A3644D /* TaigaUI */,
 				7E2C4013CAAA5AEE6CA0AD92 /* TaigaCore */,
 			);
-			productName = Tango;
-			productReference = 9BB6EF39B9BE14A21223F5F0 /* Tango.app */;
+			productName = Tranga;
+			productReference = 9BB6EF39B9BE14A21223F5F0 /* Tranga.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -110,12 +110,11 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					FF5C62FD42E11E887B9A584E = {
-						DevelopmentTeam = U9H69CCE8H;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 93669296A2173879DEE23A4E /* Build configuration list for PBXProject "Tango" */;
+			buildConfigurationList = 93669296A2173879DEE23A4E /* Build configuration list for PBXProject "Tranga" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -132,7 +131,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FF5C62FD42E11E887B9A584E /* Tango */,
+				FF5C62FD42E11E887B9A584E /* Trango */,
 			);
 		};
 /* End PBXProject section */
@@ -225,7 +224,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U9H69CCE8H;
+				DEVELOPMENT_TEAM = J5872G7867;
 				INFOPLIST_FILE = Sources/TaigaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -233,7 +232,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewgonzalez.tango;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewgonzalez.tranga;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -246,7 +245,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U9H69CCE8H;
+				DEVELOPMENT_TEAM = J5872G7867;
 				INFOPLIST_FILE = Sources/TaigaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -254,7 +253,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrewgonzalez.tango;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andrewgonzalez.tranga;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -326,7 +325,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B29113CB9CCF2D9783E614 /* Build configuration list for PBXNativeTarget "Tango" */ = {
+		58B29113CB9CCF2D9783E614 /* Build configuration list for PBXNativeTarget "Tranga" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82671B8E6765D893B703940D /* Debug */,
@@ -335,7 +334,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		93669296A2173879DEE23A4E /* Build configuration list for PBXProject "Tango" */ = {
+		93669296A2173879DEE23A4E /* Build configuration list for PBXProject "Tranga" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B35E82A92ACAE1DBF9D365FF /* Debug */,

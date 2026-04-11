@@ -1,4 +1,4 @@
-name: Tango
+name: Tranga
 options:
   bundleIdPrefix: com.andrewgonzalez
 settings:
@@ -9,7 +9,7 @@ packages:
   TaigaClient:
     path: .
 targets:
-  Tango:
+  Tranga:
     type: application
     platform: iOS
     deploymentTarget: "17.0"
@@ -34,7 +34,7 @@ targets:
         UILaunchScreen: {}
         # GitHub OAuth URL Scheme
         CFBundleURLTypes:
-          - CFBundleURLName: com.andrewgonzalez.tango
+          - CFBundleURLName: com.andrewgonzalez.tranga
             CFBundleURLSchemes:
               - taiga
     dependencies:
@@ -44,16 +44,16 @@ targets:
         product: TaigaCore
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.andrewgonzalez.tango
+        PRODUCT_BUNDLE_IDENTIFIER: com.andrewgonzalez.tranga
         DEVELOPMENT_TEAM: U9H69CCE8H
         CODE_SIGN_STYLE: Automatic
         CURRENT_PROJECT_VERSION: 1
         MARKETING_VERSION: 1.0
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 schemes:
-  Tango:
+  Tranga:
     build:
       targets:
-        Tango: all
+        Tranga: all
     run:
       config: Debug

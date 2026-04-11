@@ -1,6 +1,6 @@
-# Taiga iOS Client (SwiftUI)
+# Tranga - Taiga iOS Client (SwiftUI)
 
-Native SwiftUI starter for a third-party Taiga mobile client. It ships a lightweight Taiga REST wrapper (`TaigaCore`), SwiftUI view models and screens (`TaigaUI`), and an executable target (`TaigaMobileApp`) you can run in Xcode.
+Native SwiftUI mobile app for Taiga project management. Tranga is a lightweight third-party Taiga client featuring a Taiga REST wrapper (`TaigaCore`), SwiftUI view models and screens (`TaigaUI`), and an executable app target you can run in Xcode.
 
 ## Requirements
 - Xcode 15.3+

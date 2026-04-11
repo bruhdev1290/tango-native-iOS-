@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
-               BuildableName = "Tango.app"
-               BlueprintName = "Tango"
-               ReferencedContainer = "container:Tango.xcodeproj">
+               BuildableName = "Tranga.app"
+               BlueprintName = "Tranga"
+               ReferencedContainer = "container:Tranga.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
-            BuildableName = "Tango.app"
-            BlueprintName = "Tango"
-            ReferencedContainer = "container:Tango.xcodeproj">
+            BuildableName = "Tranga.app"
+            BlueprintName = "Tranga"
+            ReferencedContainer = "container:Tranga.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
-            BuildableName = "Tango.app"
-            BlueprintName = "Tango"
-            ReferencedContainer = "container:Tango.xcodeproj">
+            BuildableName = "Tranga.app"
+            BlueprintName = "Tranga"
+            ReferencedContainer = "container:Tranga.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FF5C62FD42E11E887B9A584E"
-            BuildableName = "Tango.app"
-            BlueprintName = "Tango"
-            ReferencedContainer = "container:Tango.xcodeproj">
+            BuildableName = "Tranga.app"
+            BlueprintName = "Tranga"
+            ReferencedContainer = "container:Tranga.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

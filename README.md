@@ -76,4 +76,4 @@ The public Taiga web front end is `https://tree.taiga.io/`, but its API is serve
 - `Tests/TaigaCoreTests`: sample unit test for auth token decoding
 
 ## API reference
-- Taiga normal login docs: POST `/api/v1/auth` with body `{ "type": "normal", "username": "...", "password": "..." }`; returns `auth_token` used as Bearer for subsequent calls. citeturn0search0
+- Taiga normal login docs: POST `/api/v1/auth` with body `{ "type": "normal", "username": "...", "password": "..." }`; returns `auth_token` used as Bearer for subsequent calls. 

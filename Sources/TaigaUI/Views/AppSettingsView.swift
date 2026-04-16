@@ -1,6 +1,7 @@
 import SwiftUI
 import TaigaCore
 import UserNotifications
+import LocalAuthentication
 
 public struct AppSettingsView: View {
     fileprivate enum SupportTopic: String, CaseIterable, Identifiable {
@@ -113,6 +114,14 @@ public struct AppSettingsView: View {
                         NotificationSettingsView()
                     } label: {
                         Label("Notifications", systemImage: "bell")
+                    }
+                }
+
+                Section("Security") {
+                    NavigationLink {
+                        SecuritySettingsView()
+                    } label: {
+                        Label("Security", systemImage: "lock.shield")
                     }
                 }
 
@@ -485,6 +494,138 @@ private struct NotificationSettingsView: View {
     private func openSettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
         UIApplication.shared.open(url)
+    }
+}
+
+private struct SecuritySettingsView: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var isPasscodeSet = false
+    @State private var isBiometricEnabled = false
+    @State private var canUseBiometrics = false
+    @State private var biometricType: LABiometryType = .none
+    @State private var showsPasscodeSetup = false
+    @State private var showsDisableConfirmation = false
+    @State private var showsChangePasscode = false
+    @State private var errorMessage: String?
+    private let securityService = SecurityLockService()
+
+    var body: some View {
+        Form {
+            Section {
+                Toggle("Passcode Lock", isOn: Binding(
+                    get: { isPasscodeSet },
+                    set: { newValue in
+                        if newValue {
+                            showsPasscodeSetup = true
+                        } else {
+                            showsDisableConfirmation = true
+                        }
+                    }
+                ))
+
+                if isPasscodeSet {
+                    Button("Change Passcode") {
+                        showsChangePasscode = true
+                    }
+                }
+            } footer: {
+                Text("Require a passcode to access the app when returning from the background.")
+                    .font(.caption)
+            }
+
+            if isPasscodeSet && biometricType != .none {
+                Section {
+                    Toggle(biometricLabel, isOn: Binding(
+                        get: { isBiometricEnabled },
+                        set: { newValue in
+                            Swift.Task {
+                                do {
+                                    try await securityService.setBiometricEnabled(newValue)
+                                    await MainActor.run {
+                                        isBiometricEnabled = newValue
+                                    }
+                                } catch {
+                                    await MainActor.run {
+                                        errorMessage = "Failed to update biometric setting."
+                                    }
+                                }
+                            }
+                        }
+                    ))
+                } footer: {
+                    Text("Use \(biometricLabel) to unlock the app quickly.")
+                        .font(.caption)
+                }
+            }
+
+            if let errorMessage {
+                Section {
+                    Text(errorMessage)
+                        .font(.footnote)
+                        .foregroundStyle(.red)
+                }
+            }
+        }
+        .navigationTitle("Security")
+        .task {
+            await refreshSecurityState()
+        }
+        .sheet(isPresented: $showsPasscodeSetup) {
+            PasscodeSetupView(
+                mode: .create,
+                securityService: securityService,
+                onComplete: {
+                    Swift.Task { await refreshSecurityState() }
+                }
+            )
+        }
+        .sheet(isPresented: $showsChangePasscode) {
+            PasscodeSetupView(
+                mode: .change,
+                securityService: securityService,
+                onComplete: {
+                    Swift.Task { await refreshSecurityState() }
+                }
+            )
+        }
+        .alert("Turn Off Passcode?", isPresented: $showsDisableConfirmation) {
+            Button("Cancel", role: .cancel) {}
+            Button("Turn Off", role: .destructive) {
+                Swift.Task {
+                    await securityService.removePasscode()
+                    await refreshSecurityState()
+                }
+            }
+        } message: {
+            Text("Disabling the passcode lock will remove your passcode and biometric settings.")
+        }
+    }
+
+    private var biometricLabel: String {
+        switch biometricType {
+        case .faceID:
+            return "Face ID"
+        case .touchID:
+            return "Touch ID"
+        case .opticID:
+            return "Optic ID"
+        default:
+            return "Biometric Authentication"
+        }
+    }
+
+    private func refreshSecurityState() async {
+        let passcodeSet = await securityService.isPasscodeSet()
+        let biometricsEnabled = await securityService.isBiometricEnabled()
+        let biometricsAvailable = await securityService.canUseBiometrics()
+        let type = await securityService.biometricType()
+        await MainActor.run {
+            isPasscodeSet = passcodeSet
+            isBiometricEnabled = biometricsEnabled
+            canUseBiometrics = biometricsAvailable
+            biometricType = type
+            errorMessage = nil
+        }
     }
 }
 

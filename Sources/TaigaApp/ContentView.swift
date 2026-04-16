@@ -6,11 +6,14 @@ struct ContentView: View {
     @State private var authViewModel: AuthViewModel
     @State private var projectsViewModel: ProjectsViewModel
     @State private var showsSplash = false
+    @State private var isLocked = false
+    @State private var securityEnabled = false
     private let apiClient: TaigaAPIClient
     private let itemsService: ItemsService
     private let projectsService: ProjectsService
     private let authService: AuthService
     private let gitHubConfig: GitHubOAuthConfig
+    private let securityService = SecurityLockService()
 
     init(
         apiClient: TaigaAPIClient,
@@ -30,7 +33,7 @@ struct ContentView: View {
             projectsService: projectsService,
             authService: authService
         ))
-        
+
         let hasSeenSplash = UserDefaults.standard.bool(forKey: "has-seen-splash-screen")
         _showsSplash = State(initialValue: !hasSeenSplash)
     }
@@ -72,6 +75,55 @@ struct ContentView: View {
                     }
                 }
                 .transition(AnyTransition.opacity)
+            }
+
+            if isLocked {
+                AppLockOverlayView(
+                    securityService: securityService,
+                    onUnlock: {
+                        withAnimation {
+                            isLocked = false
+                        }
+                    },
+                    onLogout: {
+                        Swift.Task { @MainActor in
+                            authViewModel.logout()
+                            isLocked = false
+                        }
+                    }
+                )
+                .transition(.opacity)
+                .zIndex(100)
+            }
+        }
+        .task {
+            let enabled = await securityService.isPasscodeSet()
+            await MainActor.run {
+                securityEnabled = enabled
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+            Swift.Task {
+                let enabled = await securityService.isPasscodeSet()
+                await MainActor.run {
+                    securityEnabled = enabled
+                    if securityEnabled {
+                        switch authViewModel.state {
+                        case .authenticated:
+                            isLocked = true
+                        default:
+                            break
+                        }
+                    }
+                }
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            Swift.Task {
+                let enabled = await securityService.isPasscodeSet()
+                await MainActor.run {
+                    securityEnabled = enabled
+                }
             }
         }
     }

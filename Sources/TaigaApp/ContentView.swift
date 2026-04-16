@@ -100,6 +100,14 @@ struct ContentView: View {
             let enabled = await securityService.isPasscodeSet()
             await MainActor.run {
                 securityEnabled = enabled
+                if enabled {
+                    switch authViewModel.state {
+                    case .authenticated:
+                        isLocked = true
+                    default:
+                        break
+                    }
+                }
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in

@@ -540,9 +540,22 @@ private struct SecuritySettingsView: View {
                         set: { newValue in
                             Swift.Task {
                                 do {
+                                    if newValue {
+                                        // Trigger the Face ID / Touch ID permission dialog and verify it works
+                                        let granted = await securityService.authenticateWithBiometrics(
+                                            reason: "Enable biometric authentication to unlock Taiga"
+                                        )
+                                        guard granted else {
+                                            await MainActor.run {
+                                                errorMessage = "Biometric authentication failed or permission was denied. Enable access in Settings."
+                                            }
+                                            return
+                                        }
+                                    }
                                     try await securityService.setBiometricEnabled(newValue)
                                     await MainActor.run {
                                         isBiometricEnabled = newValue
+                                        errorMessage = nil
                                     }
                                 } catch {
                                     await MainActor.run {

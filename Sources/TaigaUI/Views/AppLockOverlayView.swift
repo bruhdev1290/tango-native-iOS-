@@ -68,7 +68,7 @@ public struct AppLockOverlayView: View {
         let canUseBiometrics = await securityService.canUseBiometrics()
         let image = imageName(for: biometricType)
         await MainActor.run {
-            showBiometric = biometricEnabled && biometricType != .none
+            showBiometric = biometricEnabled && canUseBiometrics
             biometricImageName = image
         }
     }

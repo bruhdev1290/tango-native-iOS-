@@ -17,7 +17,7 @@
 
 /* Begin PBXFileReference section */
 		18EA0AA197267F96FBCED25C /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		280270208B6A290AB1F7B3BF /* Tranga.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Tranga.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		280270208B6A290AB1F7B3BF /* Tranga.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tranga.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2E1A58B2A05B48435B7134 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBAB664B272E0EC92257E9FB /* TaigaMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaigaMobileApp.swift; sourceTree = "<group>"; };
 		CD72FE74621652D2E7502256 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,7 +110,6 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					55FB1AC234E071A0FF855D7D = {
-						DevelopmentTeam = U9H69CCE8H;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -169,7 +168,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U9H69CCE8H;
+				DEVELOPMENT_TEAM = J5872G7867;
 				INFOPLIST_FILE = Sources/TaigaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -309,7 +308,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U9H69CCE8H;
+				DEVELOPMENT_TEAM = J5872G7867;
 				INFOPLIST_FILE = Sources/TaigaApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
